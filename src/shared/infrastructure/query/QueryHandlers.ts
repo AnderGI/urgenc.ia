@@ -4,21 +4,23 @@ import QueryHandler from "../../domain/query/QueryHandler";
 import QueryNotFoundError from "../../domain/query/QueryNotFoundError";
 import QueryNotRegisteredError from "../../domain/query/QueryNotRegisteredError";
 
-
 export default class QueryHandlers {
-private readonly queryToHandlerRelation = new Map<Query, QueryHandler<Query, Response>>();
+  private readonly queryToHandlerRelation = new Map<
+    Query,
+    QueryHandler<Query, Response>
+  >();
 
   constructor(queryHandlers: QueryHandler<Query, Response>[]) {
-    queryHandlers.forEach(queryHandler => {
+    queryHandlers.forEach((queryHandler) => {
       this.set(queryHandler);
     });
   }
 
-  private set(handler:QueryHandler<Query, Response>):void {
-    const query = handler.subscribedTo()
-    
-    if(!query) throw new QueryNotFoundError(handler);
-    
+  private set(handler: QueryHandler<Query, Response>): void {
+    const query = handler.subscribedTo();
+
+    if (!query) throw new QueryNotFoundError(handler);
+
     this.queryToHandlerRelation.set(handler.subscribedTo(), handler);
   }
 

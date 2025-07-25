@@ -1,9 +1,9 @@
 {
-  "tasks":{
-    "dev":{
+  "tasks": {
+    "dev": {
       "persistent": true,
       "cache": false
     },
-    "build":{}
+    "build": {}
   }
 }

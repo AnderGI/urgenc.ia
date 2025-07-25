@@ -1,5 +1,5 @@
-import Route from "./Route"
+import Route from "./Route";
 
 export default interface RouteValidator {
-  validate(route:Route):void;
+  validate(route: Route): void;
 }

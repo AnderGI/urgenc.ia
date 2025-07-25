@@ -1,7 +1,5 @@
 {
   "extends": "./tsconfig.base.json",
   "files": [],
-  "references": [
-    { "path": "./src/apps/backoffice/backend" },
-  ]
+  "references": [{ "path": "./src/apps/backoffice/backend" }]
 }

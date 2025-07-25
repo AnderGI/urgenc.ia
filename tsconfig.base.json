@@ -4,7 +4,7 @@
   "_version": "22.15.0",
 
   "compilerOptions": {
-    // Specifies which built-in JavaScript APIs (and their type definitions) 
+    // Specifies which built-in JavaScript APIs (and their type definitions)
     // are available in the global scope. "es2023" enables modern features like
     // Array.prototype.toSorted, Symbol features, etc.
     "lib": ["es2023"],
@@ -23,7 +23,7 @@
     // "es2022" allows features like class fields and static blocks without downleveling.
     // It also sets the default lib accordingly.
     "target": "es2022",
-    
+
     // Enables all strict type-checking options (strictNullChecks, noImplicitAny, etc.).
     // Improves code safety, correctness, and maintainability.
     "strict": true,
