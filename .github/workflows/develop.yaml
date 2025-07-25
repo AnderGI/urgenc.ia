@@ -10,6 +10,9 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Check node version
+      - name: Check curl exists
         run: |
-          node -v
+          curl --help
+      - name: Check unzip exists
+        run: |
+          unzip --help
