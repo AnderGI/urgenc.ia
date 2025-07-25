@@ -1,0 +1,34 @@
+{
+  "name": "create-typescript-app",
+  "version": "0.0.0",
+  "description": "Avoid any configuration headache and create any typescript ES-module-based app following the best architectural and design practices by applying DDD. This template contains only the bare minimum necessary for creating a complex business logic app.",
+  "scripts": {
+    "build": "turbo run build",
+    "lint": "eslint .",
+    "test": "vitest --run",
+    "dev": "turbo run dev",
+    "test:features": "bash ./tests/apps/backoffice/backend/setup.sh",
+    "test:features:routeTree": "vitest ./tests/apps/backoffice/backend/router-tree/**.test.ts"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.10.0",
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "@types/express": "^5.0.3",
+    "eslint": "^9.27.0",
+    "node-dependency-injection": "^2.6.11",
+    "tsx": "^4.19.4",
+    "turbo": "^2.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1",
+    "vitest": "^3.1.4"
+  },
+  "dependencies": {
+    "@types/node": "^22.15.21",
+    "express": "^5.1.0",
+    "http-status": "^2.1.0"
+  }
+}
