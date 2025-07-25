@@ -8,8 +8,7 @@
     "format": "pnpm exec prettier . --write",
     "test": "vitest --run",
     "dev": "turbo run dev",
-    "test:features": "bash ./tests/apps/backoffice/backend/setup.sh",
-    "test:features:routeTree": "vitest ./tests/apps/backoffice/backend/router-tree/**.test.ts"
+    "test:features": "bash ./tests/apps/backoffice/backend/setup.sh"
   },
   "type": "module",
   "keywords": [],
