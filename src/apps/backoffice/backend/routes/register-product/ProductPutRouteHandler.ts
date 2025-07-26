@@ -6,7 +6,7 @@ export default class ProductPutRouteHandler implements RouteHandler {
   constructor(private readonly controller: ProductPutController) {}
 
   register(router: Router): void {
-    router.get("/app/products/:id", (req: Request, res: Response) => {
+    router.put("/app/products/:id", (req: Request, res: Response) => {
       return this.controller.run(req, res);
     });
   }
