@@ -10,6 +10,14 @@ services:
     arguments:
       ["@Apps.Backoffice.Backend.controllers.status.StatusGetController"]
     tags: [{ "name": "route-handlers" }]
+  Apps.Backoffice.Backend.controllers.register-product.ProductPutController:
+    class: ../../../controllers/register-product/ProductPutController
+    arguments: []
+  Apps.Backoffice.Backend.routes.register-product.ProductPutRouteHandler:
+    class: ../../../routes/register-product/ProductPutRouteHandler
+    arguments:
+      ["@Apps.Backoffice.Backend.controllers.register-product.ProductPutController"]
+    tags: [{ "name": "route-handlers" }]
   Apps.Backoffice.Backend.RouteHandlers:
     class: ../../../routes/RouteHandlers
     arguments: ["!tagged route-handlers"]
