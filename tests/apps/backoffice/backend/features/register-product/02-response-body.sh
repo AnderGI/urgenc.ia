@@ -3,7 +3,10 @@
 echo -e "\tchecking response body..."
 echo -e "\texpected to be empty"
 
-body=$(curl -s -X PUT  http://localhost:5000/app/products/a47494eb-7baa-4895-a4e4-27ed96921f23)
+body=$(curl -s -X PUT  http://localhost:5000/app/products/a47494eb-7baa-4895-a4e4-27ed96921f23 \
+        -H "Content-Type: application/json" \
+        --data @valid-data.json
+      )
 
 if [ -z "$body" ]; then
   echo -e "\t✅ Body is empty"
