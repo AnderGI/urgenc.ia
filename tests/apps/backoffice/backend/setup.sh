@@ -30,7 +30,7 @@ for feature_dir in "$SCRIPT_DIR/features"/*; do
       echo "▶️ Executing $(basename "$script")"
       bash "$script"
       echo
-      sleep 0.25
+      sleep 0.125
     done
   fi
 done
