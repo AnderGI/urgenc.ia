@@ -1,13 +1,27 @@
-export class DomainEvent {
-  public readonly occurredOn: Date;
-  public readonly eventName: string;
+import { v4 } from "uuid";
 
-  protected constructor(occurredOn?: Date) {
-    this.eventName = this.getEventName();
-    this.occurredOn = occurredOn ?? new Date();
-  }
+export type DomainEventAttributes = Record<string, unknown>;
 
-  protected getEventName(): string {
-    return "event";
-  }
+export default abstract class DomainEvent {
+	public readonly eventId: string;
+	public readonly occurredOn: Date;
+
+	protected constructor(
+		public readonly eventName: string,
+		eventId?: string,
+		occurredOn?: Date,
+	) {
+		this.eventId = eventId ?? v4();
+		this.occurredOn = occurredOn ?? new Date();
+	}
+
+	 
+	static fromPrimitives: (
+		eventId: string,
+		occurredOn: Date,
+		attributes: DomainEventAttributes,
+		 
+	) => DomainEvent;
+
+	abstract toPrimitives(): DomainEventAttributes;
 }

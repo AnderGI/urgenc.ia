@@ -52,9 +52,11 @@
 
     // emit sourcemap files to help debugg js code
     // navigate from js to original ts code
-    "sourceMap": true
+    "sourceMap": true,
+    "rootDir": "."
   },
 
   // Folders to exclude from type-checking and compilation.
-  "exclude": ["./node_modules"]
+  "exclude": ["./node_modules"],
+  "include": ["./src"]
 }

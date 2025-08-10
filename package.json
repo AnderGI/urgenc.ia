@@ -17,6 +17,7 @@
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {
     "@eslint/js": "^9.31.0",
+    "@types/amqplib": "^0.10.7",
     "@types/express": "^5.0.3",
     "eslint": "^9.31.0",
     "node-dependency-injection": "^2.7.3",
@@ -29,7 +30,12 @@
   },
   "dependencies": {
     "@types/node": "^22.16.5",
+    "amqplib": "^0.10.8",
     "express": "^5.1.0",
-    "http-status": "^2.1.0"
+    "http-status": "^2.1.0",
+    "pg": "^8.16.3",
+    "typeorm": "^0.3.25",
+    "uuid": "^11.1.0",
+    "zod": "^4.0.10"
   }
 }

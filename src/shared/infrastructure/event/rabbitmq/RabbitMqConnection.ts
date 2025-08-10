@@ -1,0 +1,215 @@
+import amqplib, { type ConsumeMessage } from "amqplib";
+
+export interface Settings {
+	username: string;
+	password: string;
+	vhost: string;
+	connection: {
+		hostname: string;
+		port: number;
+	};
+}
+
+export default class RabbitMqConnection {
+	amqpChannelModel?: amqplib.ChannelModel;
+	amqpConnection?: amqplib.Connection;
+	amqpChannel?: amqplib.ConfirmChannel;
+	private readonly settings: Settings = {
+		username: "user",
+		password: "user",
+		vhost: "/",
+		connection: {
+			hostname: "localhost",
+			port: 5672,
+		},
+	};
+
+	async connect(): Promise<void> {
+		this.amqpChannelModel = await this.amqpConnect()
+		this.amqpConnection = this.amqpChannelModel.connection;
+		this.amqpChannel = await this.amqpChannelConnect();
+	}
+
+	async close(): Promise<void> {
+		await this.channel().close();
+
+		await this.amqpChannelModel!.close();
+	}
+
+	async publish(
+		exchange: string,
+		routingKey: string,
+		content: Buffer,
+		options: {
+			messageId: string;
+			contentType: string;
+			contentEncoding: string;
+			priority?: number;
+			headers?: unknown;
+		},
+	): Promise<void> {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+		return new Promise((resolve: Function, reject: Function) => {
+			this.channel().publish(exchange, routingKey, content, options, (error: unknown) =>
+				error ? reject(error) : resolve(),
+			);
+		});
+	}
+
+	async publishToRetry(message: ConsumeMessage, queueName: string): Promise<void> {
+		const options = this.generateMessageOptionsFromMessageToRepublish(message);
+
+		await this.publish('domain_events.retry', queueName, message.content, options);
+	}
+
+	async publishToDeadLetter(message: ConsumeMessage, queueName: string): Promise<void> {
+		const options = this.generateMessageOptionsFromMessageToRepublish(message);
+
+		await this.publish('domain_events.dead_letter', queueName, message.content, options);
+	}
+
+	async ack(message: ConsumeMessage): Promise<void> {
+		this.channel().ack(message);
+	}
+
+
+	async declareExchanges(exchangeName:string): Promise<void> {
+		await Promise.all([
+			this.declareExchange(exchangeName), 
+			this.declareRetryExchange(`${exchangeName}.retry`),
+			this.declareDeadLetterExchange(`${exchangeName}.dead_letter`),
+		])
+	}
+	private async declareExchange(exchangeName: string): Promise<void> {
+		await this.channel().assertExchange(exchangeName, "topic", { durable: true });
+	}
+
+	private async declareRetryExchange(exchangeName: string): Promise<void> {
+		await this.channel().assertExchange(exchangeName, "topic", { durable: true });
+	}
+
+	private async declareDeadLetterExchange(exchangeName: string): Promise<void> {
+		await this.channel().assertExchange(exchangeName, "topic", { durable: true });
+	}
+	/*
+	private connection(): amqplib.Connection {
+		if (!this.amqpConnection) {
+			throw new Error("RabbitMQ not connected");
+		}
+
+		return this.amqpConnection;
+	}
+	*/
+
+	private channel(): amqplib.ConfirmChannel {
+		if (!this.amqpChannel) {
+			throw new Error("RabbitMQ channel not connected");
+		}
+
+		return this.amqpChannel;
+	}
+
+	private async amqpConnect(): Promise<amqplib.ChannelModel> {
+		const connection = await amqplib.connect({
+			protocol: "amqp",
+			hostname: this.settings.connection.hostname,
+			port: this.settings.connection.port,
+			username: this.settings.username,
+			password: this.settings.password,
+			vhost: this.settings.vhost,
+		});
+
+		connection.on("error", (error: unknown) => {
+			throw error;
+		});
+
+		return connection;
+	}
+
+	private async amqpChannelConnect(): Promise<amqplib.ConfirmChannel> {
+		const channel = await this.amqpChannelModel!.createConfirmChannel();
+		await channel.prefetch(1);
+
+		return channel;
+	}
+
+	async declareQueue(name: string, exchangeName: string, bindingKeys: string[]): Promise<void> {
+		// "Normal"
+		await this.channel().assertQueue(name, {
+			exclusive: false,
+			durable: true,
+			autoDelete: false,
+		});
+
+		await Promise.all([
+			bindingKeys.map((bindingKey) => {
+				this.channel().bindQueue(name, exchangeName, bindingKey)
+			}),
+			this.channel().bindQueue(name, exchangeName, name)
+		]);
+
+		// Retry
+		await this.channel().assertQueue(`${name}.retry`, {
+			exclusive: false,
+			durable: true,
+			autoDelete: false,
+			messageTtl: 3000,
+			deadLetterExchange: exchangeName,
+			deadLetterRoutingKey: name
+		});
+
+		await Promise.all(
+			bindingKeys.map((bindingKey) => this.channel().bindQueue(`${name}.retry`, `${exchangeName}.retry`, bindingKey)),
+		);
+		
+		// Dead Letter
+		
+		await this.channel().assertQueue(`${name}.dead_letter`, {
+			exclusive: false,
+			durable: true,
+			autoDelete: false,
+		});
+
+		await Promise.all(
+			bindingKeys.map((bindingKey) => this.channel().bindQueue(`${name}.dead_letter`, `${exchangeName}.dead_letter`, bindingKey)),
+		);
+	}
+
+
+	// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+	async consume(queue: string, subscriber: (message: ConsumeMessage) => {}): Promise<void> {
+		await this.channel().consume(queue, (message: ConsumeMessage | null) => {
+			if (message) {
+				subscriber(message);
+			}
+		});
+	}
+
+	private generateMessageOptionsFromMessageToRepublish(message: ConsumeMessage) {
+		const { messageId, contentType, contentEncoding, priority } = message.properties;
+
+		return {
+			messageId,
+			headers: this.incrementRedeliveryCount(message),
+			contentType,
+			contentEncoding,
+			priority,
+		};
+	}
+
+	private incrementRedeliveryCount(message: ConsumeMessage) {
+		if (this.hasBeenRedelivered(message)) {
+			const count = parseInt(message.properties.headers["redelivery_count"], 10);
+			message.properties.headers["redelivery_count"] = count + 1;
+		} else {
+			message.properties.headers["redelivery_count"] = 1;
+		}
+
+		return message.properties.headers;
+	}
+
+	private hasBeenRedelivered(message: ConsumeMessage) {
+		return message.properties.headers["redelivery_count"] !== undefined;
+	}
+	
+}

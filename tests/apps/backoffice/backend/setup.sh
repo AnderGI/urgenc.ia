@@ -26,11 +26,12 @@ for feature_dir in "$SCRIPT_DIR/features"/*; do
   if [ -d "$feature_dir" ]; then
     echo "🚀 Running tests in $(basename "$feature_dir")"
     
-    for script in "$feature_dir"/*.sh; do
-      echo "▶️ Executing $(basename "$script")"
-      bash "$script"
-      echo
-      sleep 0.125
-    done
+find "$feature_dir" -type f -name '*.sh' | while read -r script; do
+  echo "▶️ Executing $(basename "$script")"
+  bash "$script"
+  echo
+  sleep 0.125
+done
+
   fi
 done

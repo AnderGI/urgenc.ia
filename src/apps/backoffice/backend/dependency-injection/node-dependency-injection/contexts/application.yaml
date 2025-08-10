@@ -1,0 +1,19 @@
+services:
+  Backoffice.TypeOrmConfig:
+    factory:
+      class: ../../../../../../shared/infrastructure/persistence/postgres-typeorm/TypeOrmConfigFactory
+      method: 'createConfig'
+  Backoffice.ConnectionManager:
+    factory:
+      class: ../../../../../../shared/infrastructure/persistence/postgres-typeorm/TypeOrmClientFactory
+      method: 'createClient'
+    arguments: ['backoffice', '@Backoffice.TypeOrmConfig']
+  Contexts.Backoffice.Backend.product.application.domain.ProductRepository:
+    class: ../../../../../../contexts/backoffice/backend/product/infrastructure/persistence/postgres-typeorm/TypeOrmProductRepository
+    arguments: ['@Backoffice.ConnectionManager']
+  Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository:
+    class: ../../../../../../contexts/backoffice/backend/product-reviews-config/infrastructure/persistence/postgres-typeorm/TypeOrmProductReviewsConfigRepository
+    arguments: ['@Backoffice.ConnectionManager']
+  Contexts.Backoffice.Backend.product.reviews.domain.ProductReviewsRepository:
+    class: ../../../../../../contexts/backoffice/backend/product-reviews/infrastructure/persistence/postgres-typeorm/TypeOrmProductReviewsRepository
+    arguments: ['@Backoffice.ConnectionManager']
