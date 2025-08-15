@@ -1,4 +1,4 @@
-import IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommand from "../../../../../../apps/backoffice/backend/subscribers/rabbitmq/product-reviews-config/IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommand.js"
+import IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommand from "../../../../../../apps/backoffice/backend/subscribers/rabbitmq/product-reviews-config/increment-product-reviews-config-total-reviews/IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommand.js"
 import ProductReviewsConfig from "../../domain/ProductReviewsConfig.js"
 import ProductReviewsConfigId from "../../domain/ProductReviewsConfigId.js"
 import ProductReviewsConfigRepository from "../../domain/ProductReviewsConfigRepository.js"

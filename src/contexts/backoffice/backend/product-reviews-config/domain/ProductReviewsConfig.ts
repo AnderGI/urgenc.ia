@@ -9,7 +9,7 @@ import ProductReviewsConfigTotalReviews from "./ProductReviewsConfigTotalReviews
 export default class ProductReviewsConfig extends AggregateRoot{
   
   constructor (readonly id: ProductReviewsConfigId, public totalReviews: ProductReviewsConfigTotalReviews, 
-    readonly negativeReviews:ProductReviewsConfigNegativeReviews, public negativeReviewsThreshold: ProductReviewsConfigNegativeReviewsThreshold,
+    public negativeReviews:ProductReviewsConfigNegativeReviews, public negativeReviewsThreshold: ProductReviewsConfigNegativeReviewsThreshold,
     readonly negativeReviewsRoundedPercentage: ProductReviewsConfigNegativeReviewsRoundedPercentage, public timeWindowStart: ProductReviewsConfigTimeWindowStart
   ){
       super()
@@ -52,6 +52,11 @@ export default class ProductReviewsConfig extends AggregateRoot{
     public incrementTotalReviewsByOne() {
       const totalReviewsValue = this.totalReviews.value;
       this.totalReviews = new ProductReviewsConfigTotalReviews(totalReviewsValue + 1)
+    }
+
+    public incrementNegativeReviewsByOne() {
+      const negativeReviewsValue = this.negativeReviews.value;
+      this.negativeReviews = new ProductReviewsConfigNegativeReviewsThreshold(negativeReviewsValue + 1)
     }
 
   }

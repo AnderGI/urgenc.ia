@@ -1,3 +1,10 @@
 imports:
   - { resource: ./contexts/application.yaml }
   - { resource: ./apps/application.yaml }
+  - { resource: ./apps/routes/application.yaml }
+  - { resource: ./apps/controllers/application.yaml }
+  - { resource: ./apps/subscribers/application.yaml }
+  - { resource: ./contexts/backoffice/backend/product/application.yaml }
+  - { resource: ./contexts/backoffice/backend/product-reviews/application.yaml }
+  - { resource: ./contexts/backoffice/backend/product-reviews-config/application.yaml }
+  - { resource: ./contexts/backoffice/backend/review-sentiment-classifier/application.yaml }

@@ -1,0 +1,16 @@
+services:
+  Apps.Backoffice.Backend.controllers.status.StatusGetController:
+    class: ../../../../controllers/status/StatusGetController
+    arguments: []
+  Apps.Backoffice.Backend.controllers.register-product.ProductPutController:
+    class: ../../../../controllers/register-product/ProductPutController
+    arguments: ["@Contexts.Backoffice.Backend.product.application.register-product.ProductRegisterer"]
+  Apps.Backoffice.Backend.controllers.get.product.by.id.ProductGetByIdController:
+    class: ../../../../controllers/get-product-by-id/ProductGetByIdController
+    arguments: ["@Contexts.Backoffice.Backend.product.application.find.by.id.FindProductByIdQueryHandler"]
+  Apps.Backoffice.Backend.controllers.configure.product.reviews.config.ConfigureProductReviewsConfigController:
+    class: ../../../../controllers/configure-product-reviews-config/ConfigureProductReviewsConfigController
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.update.ProductReviewsConfigUpdater"]
+  Apps.Backoffice.Backend.controllers.add.product.reviews.AddProductReviewsController:
+    class: ../../../../controllers/add-product-reviews/AddProductReviewsController
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.create.ProductReviewsCreator"]

@@ -14,6 +14,3 @@ services:
   Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository:
     class: ../../../../../../contexts/backoffice/backend/product-reviews-config/infrastructure/persistence/postgres-typeorm/TypeOrmProductReviewsConfigRepository
     arguments: ['@Backoffice.ConnectionManager']
-  Contexts.Backoffice.Backend.product.reviews.domain.ProductReviewsRepository:
-    class: ../../../../../../contexts/backoffice/backend/product-reviews/infrastructure/persistence/postgres-typeorm/TypeOrmProductReviewsRepository
-    arguments: ['@Backoffice.ConnectionManager']

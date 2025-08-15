@@ -29,10 +29,14 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
+    "@langchain/community": "^0.3.50",
+    "@langchain/core": "0.3.68",
+    "@langchain/ollama": "^0.2.3",
     "@types/node": "^22.16.5",
     "amqplib": "^0.10.8",
     "express": "^5.1.0",
     "http-status": "^2.1.0",
+    "langchain": "^0.3.30",
     "pg": "^8.16.3",
     "typeorm": "^0.3.25",
     "uuid": "^11.1.0",

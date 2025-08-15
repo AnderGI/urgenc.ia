@@ -1,0 +1,7 @@
+services:
+  Contexts.Backoffice.Backend.product.sentiment.classifier.domain.SentimentClassifier:
+    class: ../../../../../../../../../contexts/backoffice/backend/review-sentiment-classifier/infrastructure/Qwen314BSentimentClassifier
+    arguments: []
+  Contexts.Backoffice.Backend.product.sentiment.classifier.application.create.ReviewContentSentimentClassifier:
+    class: ../../../../../../../../../contexts/backoffice/backend/review-sentiment-classifier/application/ReviewContentSentimentClassifier
+    arguments: ["@Contexts.Backoffice.Backend.product.sentiment.classifier.domain.SentimentClassifier", "@Backoffice.EventBus"]

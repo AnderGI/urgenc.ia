@@ -8,52 +8,6 @@ services:
   Backoffice.EventBus:
     class: ../../../../../../shared/infrastructure/event/rabbitmq/RabbitMqEventBus
     arguments: ["@Backoffice.RabbitMqConnection", "@Backoffice.DomainEventFailover"]
-  Apps.Backoffice.Backend.RouteValidator:
-    class: ../../../routes/ZaladoAPIGuideBasedRouteValidator
-    arguments: []
-  Apps.Backoffice.Backend.controllers.status.StatusGetController:
-    class: ../../../controllers/status/StatusGetController
-    arguments: []
-  Apps.Backoffice.Backend.routes.status.StatusGetRouteHandler:
-    class: ../../../routes/status/StatusGetRouteHandler
-    arguments:
-      ["@Apps.Backoffice.Backend.controllers.status.StatusGetController"]
-    tags: [{ "name": "route-handlers" }]
-  Contexts.Backoffice.Backend.product.application.register-product.ProductRegisterer:
-    class: ../../../../../../contexts/backoffice/backend/product/application/register-product/ProductRegisterer
-    arguments: ["@Contexts.Backoffice.Backend.product.application.domain.ProductRepository", "@Backoffice.EventBus"]
-  Apps.Backoffice.Backend.controllers.register-product.ProductPutController:
-    class: ../../../controllers/register-product/ProductPutController
-    arguments: ["@Contexts.Backoffice.Backend.product.application.register-product.ProductRegisterer"]
-  Contexts.Backoffice.Backend.product.reviews.config.application.increment.ProductReviewsConfigReviewsIncrementer:
-    class: ../../../../../../contexts/backoffice/backend/product-reviews-config/application/increment/ProductReviewsConfigReviewsIncrementer
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository"]
-  Contexts.Backoffice.Backend.product.reviews.config.application.create.ProductReviewsConfigCreator:
-    class: ../../../../../../contexts/backoffice/backend/product-reviews-config/application/create/ProductReviewsConfigCreator
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository"]
-  Contexts.Backoffice.Backend.product.sentiment.classifier.application.create.ReviewContentSentimentClassifier:
-    class: ../../../../../../contexts/backoffice/backend/sentiment-classifier/application/ReviewContentSentimentClassifier
-    arguments: []
-  Apps.Backoffice.Backend.subscribers.rabbitmq.sentiment.classifier.ClassifyReviewContentOnProductReviewsCreated:
-    class: ../../../subscribers/rabbitmq/sentiment-classifier/ClassifyReviewContentOnProductReviewsCreated
-    arguments: ["@Contexts.Backoffice.Backend.product.sentiment.classifier.application.create.ReviewContentSentimentClassifier"]
-    tags: [{ "name": "domain-event-subscriber" }]
-  Apps.Backoffice.Backend.subscribers.rabbitmq.IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreated:
-    class: ../../../subscribers/rabbitmq/product-reviews-config/IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreated
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.increment.ProductReviewsConfigReviewsIncrementer"]
-    tags: [{ "name": "domain-event-subscriber" }]
-  Apps.Backoffice.Backend.subscribers.rabbitmq.CreateProductReviewsConfigOnProductCreated:
-    class: ../../../subscribers/rabbitmq/product-reviews-config/CreateProductReviewsConfigOnProductRegistered
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.create.ProductReviewsConfigCreator"]
-    tags: [{ "name": "domain-event-subscriber" }]
-  Apps.Backoffice.Backend.routes.register-product.ProductPutRouteHandler:
-    class: ../../../routes/register-product/ProductPutRouteHandler
-    arguments:
-      ["@Apps.Backoffice.Backend.controllers.register-product.ProductPutController"]
-    tags: [{ "name": "route-handlers" }]
-  Apps.Backoffice.Backend.RouteHandlers:
-    class: ../../../routes/RouteHandlers
-    arguments: ["!tagged route-handlers"]
   Apps.Backoffice.Backend.ExpressHttpServer:
     class: ../../../ExpressHttpServer
     arguments:
@@ -64,39 +18,4 @@ services:
   Apps.Backoffice.Backend.BackofficeBackendApp:
     class: ../../../BackofficeBackendApp
     arguments: ["@Apps.Backoffice.Backend.ExpressHttpServer"]
-  Contexts.Backoffice.Backend.product.application.find.by.id.ProductByIdFinder:
-    class: ../../../../../../contexts/backoffice/backend/product/application/find-by-id/ProductByIdFinder
-    arguments: ["@Contexts.Backoffice.Backend.product.application.domain.ProductRepository"]
-  Contexts.Backoffice.Backend.product.application.find.by.id.FindProductByIdQueryHandler:
-    class: ../../../../../../contexts/backoffice/backend/product/application/find-by-id/FindProductByIdQueryHandler
-    arguments: ["@Contexts.Backoffice.Backend.product.application.find.by.id.ProductByIdFinder"]
-  Apps.Backoffice.Backend.controllers.get.product.by.id.ProductGetByIdController:
-    class: ../../../controllers/get-product-by-id/ProductGetByIdController
-    arguments: ["@Contexts.Backoffice.Backend.product.application.find.by.id.FindProductByIdQueryHandler"]
-  Apps.Backoffice.Backend.controllers.get.product.by.id.ProductGetByIdRouteHandler:
-    class: ../../../routes/get-product-by-id/ProductGetByIdRouteHandler
-    arguments:
-      ["@Apps.Backoffice.Backend.controllers.get.product.by.id.ProductGetByIdController"]
-    tags: [{ "name": "route-handlers" }]
-  Contexts.Backoffice.Backend.product.reviews.config.update.ProductReviewsConfigUpdater:
-    class: ../../../../../../contexts/backoffice/backend/product-reviews-config/application/update/ProductReviewsConfigUpdater
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository"]
-  Apps.Backoffice.Backend.controllers.configure.product.reviews.config.ConfigureProductReviewsConfigController:
-    class: ../../../controllers/configure-product-reviews-config/ConfigureProductReviewsConfigController
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.update.ProductReviewsConfigUpdater"]
-  Apps.Backoffice.Backend.routes.configure.product.reviews.config.ConfigureProductReviewsConfigRouteHandler:
-    class: ../../../routes/configure-product-reviews-config/ConfigureProductReviewsConfigRouteHandler
-    arguments:
-      ["@Apps.Backoffice.Backend.controllers.configure.product.reviews.config.ConfigureProductReviewsConfigController"]
-    tags: [{ "name": "route-handlers" }]
-  Contexts.Backoffice.Backend.product.reviews.create.ProductReviewsCreator:
-    class: ../../../../../../contexts/backoffice/backend/product-reviews/application/create/ProductReviewsCreator
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.domain.ProductReviewsRepository", "@Backoffice.EventBus"]
-  Apps.Backoffice.Backend.controllers.add.product.reviews.AddProductReviewsController:
-    class: ../../../controllers/add-product-reviews/AddProductReviewsController
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.create.ProductReviewsCreator"]
-  Apps.Backoffice.Backend.routes.add.product.reviews.AddProductReviewsRouteHandler:
-    class: ../../../routes/add-product-reviews/AddProductReviewsRouteHandler
-    arguments:
-      ["@Apps.Backoffice.Backend.controllers.add.product.reviews.AddProductReviewsController"]
-    tags: [{ "name": "route-handlers" }]
+
