@@ -5,3 +5,6 @@ services:
   Contexts.Backoffice.Backend.product.sentiment.classifier.application.create.ReviewContentSentimentClassifier:
     class: ../../../../../../../../../contexts/backoffice/backend/review-sentiment-classifier/application/ReviewContentSentimentClassifier
     arguments: ["@Contexts.Backoffice.Backend.product.sentiment.classifier.domain.SentimentClassifier", "@Backoffice.EventBus"]
+  Contexts.Backoffice.Backend.product.sentiment.classifier.application.create.LabelSentimentFromReviewContentCommandHandler:
+    class: ../../../../../../../../../contexts/backoffice/backend/review-sentiment-classifier/application/LabelSentimentFromReviewContentCommandHandler
+    arguments: ["@Contexts.Backoffice.Backend.product.sentiment.classifier.application.create.ReviewContentSentimentClassifier"]
