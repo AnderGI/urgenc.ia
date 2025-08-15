@@ -11,3 +11,6 @@ services:
   Contexts.Backoffice.Backend.product.reviews.config.update.ProductReviewsConfigUpdater:
     class: ../../../../../../../../../contexts/backoffice/backend/product-reviews-config/application/update/ProductReviewsConfigUpdater
     arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository"]
+  Contexts.Backoffice.Backend.product.reviews.config.update.ConfigureProductReviewsConfigCommandHandler:
+    class: ../../../../../../../../../contexts/backoffice/backend/product-reviews-config/application/update/ConfigureProductReviewsConfigCommandHandler
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.update.ProductReviewsConfigUpdater"]

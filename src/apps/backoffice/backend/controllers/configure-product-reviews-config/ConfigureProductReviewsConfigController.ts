@@ -1,7 +1,8 @@
 import status from "http-status";
 import z from "zod";
 import type { Request, Response } from "express";
-import ProductReviewsConfigUpdater from "../../../../../contexts/backoffice/backend/product-reviews-config/application/update/ProductReviewsConfigUpdater.js";
+import ConfigureProductReviewsConfigCommandHandler from "../../../../../contexts/backoffice/backend/product-reviews-config/application/update/ConfigureProductReviewsConfigCommandHandler.js";
+import ConfigureProductReviewsConfigCommand from "./ConfigureProductReviewsConfigCommand.js";
 
 
 export default class ConfigureProductReviewsConfigController {
@@ -12,7 +13,7 @@ export default class ConfigureProductReviewsConfigController {
     });
 
 
-    constructor(private readonly configUpdater:ProductReviewsConfigUpdater) {}
+    constructor(private readonly configUpdater:ConfigureProductReviewsConfigCommandHandler) {}
 
   public run(req: Request, res: Response): void {
     const data: Buffer[] = [];
@@ -33,7 +34,8 @@ export default class ConfigureProductReviewsConfigController {
         }
         // this.registerer.register(new RegisterProductCommand(jsonBody.id, jsonBody.name))
         console.log(jsonBody.id, jsonBody.negativeThreshold, jsonBody.timeWindowStart)
-        this.configUpdater.run(jsonBody.id, jsonBody.negativeThreshold, jsonBody.timeWindowStart)
+        const command = new ConfigureProductReviewsConfigCommand(jsonBody.id, jsonBody.negativeThreshold, jsonBody.timeWindowStart)
+        this.configUpdater.handle(command);
         return res.status(status.ACCEPTED).send();
       } catch {
         return res.status(status.BAD_REQUEST).send();
