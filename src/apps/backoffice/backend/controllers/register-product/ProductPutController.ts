@@ -1,8 +1,8 @@
 import type { Request, Response } from "express";
 import status from "http-status";
 import z from "zod";
-import ProductRegisterer from '../../../../../contexts/backoffice/backend/product/application/register-product/ProductRegisterer.js'
 import RegisterProductCommand from "./RegisterProductCommand.js";
+import type RegisterProductCommandHandler from "../../../../../contexts/backoffice/backend/product/application/register-product/RegisterProductCommandHandler.js";
 
 export default class ProductPutController {
   private productSchema = z.object({
@@ -10,7 +10,7 @@ export default class ProductPutController {
     name: z.string().min(2)
   });
 
-  constructor(private readonly registerer:ProductRegisterer){}
+  constructor(private readonly registerer:RegisterProductCommandHandler){}
 
   public run(req: Request, res: Response): void {
     const data: Buffer[] = [];
@@ -28,7 +28,7 @@ export default class ProductPutController {
         if (!result.success) {
           return res.status(status.UNPROCESSABLE_ENTITY).send();
         }
-        this.registerer.register(new RegisterProductCommand(jsonBody.id, jsonBody.name))
+        this.registerer.handle(new RegisterProductCommand(jsonBody.id, jsonBody.name))
         return res.status(status.ACCEPTED).send();
       } catch {
         return res.status(status.BAD_REQUEST).send();

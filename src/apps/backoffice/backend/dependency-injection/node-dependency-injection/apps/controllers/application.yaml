@@ -4,7 +4,7 @@ services:
     arguments: []
   Apps.Backoffice.Backend.controllers.register-product.ProductPutController:
     class: ../../../../controllers/register-product/ProductPutController
-    arguments: ["@Contexts.Backoffice.Backend.product.application.register-product.ProductRegisterer"]
+    arguments: ["@Contexts.Backoffice.Backend.product.application.register-product.RegisterProductCommandHandler"]
   Apps.Backoffice.Backend.controllers.get.product.by.id.ProductGetByIdController:
     class: ../../../../controllers/get-product-by-id/ProductGetByIdController
     arguments: ["@Contexts.Backoffice.Backend.product.application.find.by.id.FindProductByIdQueryHandler"]

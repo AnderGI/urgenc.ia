@@ -2,6 +2,9 @@ services:
   Contexts.Backoffice.Backend.product.application.register-product.ProductRegisterer:
     class: ../../../../../../../../../contexts/backoffice/backend/product/application/register-product/ProductRegisterer
     arguments: ["@Contexts.Backoffice.Backend.product.application.domain.ProductRepository", "@Backoffice.EventBus"]
+  Contexts.Backoffice.Backend.product.application.register-product.RegisterProductCommandHandler:
+    class: ../../../../../../../../../contexts/backoffice/backend/product/application/register-product/RegisterProductCommandHandler
+    arguments: ["@Contexts.Backoffice.Backend.product.application.register-product.ProductRegisterer"]
   Contexts.Backoffice.Backend.product.application.find.by.id.ProductByIdFinder:
     class: ../../../../../../../../../contexts/backoffice/backend/product/application/find-by-id/ProductByIdFinder
     arguments: ["@Contexts.Backoffice.Backend.product.application.domain.ProductRepository"]
