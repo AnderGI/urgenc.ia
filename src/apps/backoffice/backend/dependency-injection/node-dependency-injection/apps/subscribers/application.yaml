@@ -5,7 +5,7 @@ services:
     tags: [{ "name": "domain-event-subscriber" }]
   Apps.Backoffice.Backend.subscribers.rabbitmq.IncreaseNegativeReviewOnNegativeProductReviewDetected:
     class: ../../../../subscribers/rabbitmq/product-reviews-config/increase-negative-review/IncreaseNegativeReviewOnNegativeProductReviewDetected
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.increment.negative.reviews.ProductReviewsConfigNegativeReviewsIncrementer"]
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.increment.negative.reviews.IncrementProductReviewsConfigNegativeReviewsOnProductReviewsCreatedCommandHandler"]
     tags: [{ "name": "domain-event-subscriber" }]
   Apps.Backoffice.Backend.subscribers.rabbitmq.IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreated:
     class: ../../../../subscribers/rabbitmq/product-reviews-config/increment-product-reviews-config-total-reviews/IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreated
