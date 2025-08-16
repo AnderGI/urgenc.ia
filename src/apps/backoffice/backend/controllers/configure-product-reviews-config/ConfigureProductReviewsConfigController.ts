@@ -9,11 +9,12 @@ export default class ConfigureProductReviewsConfigController {
   private configureProductReviewsConfigSchema = z.object({
       id: z.uuid(),
       negativeThreshold: z.number().nonnegative().lte(1).gte(0),
-      timeWindowStart: z.iso.date()
+      timeWindowStart: z.iso.date(),
+      minimumReviews: z.number().gt(0)
     });
 
 
-    constructor(private readonly configUpdater:ConfigureProductReviewsConfigCommandHandler) {}
+  constructor(private readonly configUpdater:ConfigureProductReviewsConfigCommandHandler) {}
 
   public run(req: Request, res: Response): void {
     const data: Buffer[] = [];
@@ -32,9 +33,7 @@ export default class ConfigureProductReviewsConfigController {
         if (!result.success) {
           return res.status(status.UNPROCESSABLE_ENTITY).send();
         }
-        // this.registerer.register(new RegisterProductCommand(jsonBody.id, jsonBody.name))
-        console.log(jsonBody.id, jsonBody.negativeThreshold, jsonBody.timeWindowStart)
-        const command = new ConfigureProductReviewsConfigCommand(jsonBody.id, jsonBody.negativeThreshold, jsonBody.timeWindowStart)
+        const command = new ConfigureProductReviewsConfigCommand(jsonBody.id, jsonBody.negativeThreshold, jsonBody.timeWindowStart, jsonBody.minimumReviews)
         this.configUpdater.handle(command);
         return res.status(status.ACCEPTED).send();
       } catch {

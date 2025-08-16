@@ -7,6 +7,8 @@ import ProductReviewsConfigNegativeReviews from "../../../domain/ProductReviewsC
 import ProductReviewsConfigNegativeReviewsThreshold from "../../../domain/ProductReviewsConfigNegativeReviewsThreshold.js";
 import ProductReviewsConfigNegativeReviewsRoundedPercentage from "../../../domain/ProductReviewsConfigNegativeReviewsRoundedPercentage.js";
 import ProductReviewsConfigTimeWindowStart from "../../../domain/ProductReviewsConfigTimeWindowStart.js";
+import { number } from "zod";
+import ProductReviewsConfigMinimumReviews from "../../../domain/ProductReviewsConfigMinimumReviews.js";
 
 export const ProductReviewsConfigEntity = new EntitySchema<ProductReviewsConfig>({
   name: 'ProductReviewsConfig',
@@ -37,6 +39,10 @@ export const ProductReviewsConfigEntity = new EntitySchema<ProductReviewsConfig>
     timeWindowStart: {
       type: Date,
       transformer: ValueObjectTransformer(ProductReviewsConfigTimeWindowStart)
+    },
+    minimumReviews: {
+      type: Number,
+      transformer: ValueObjectTransformer(ProductReviewsConfigMinimumReviews)
     }
   }
 });
