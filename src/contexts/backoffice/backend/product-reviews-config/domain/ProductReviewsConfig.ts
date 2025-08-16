@@ -1,5 +1,4 @@
 import AggregateRoot from "../../../../../shared/domain/AggregateRoot.js";
-import NegativeProductReviewDetectedDomainEvent from "../../review-sentiment-classifier/domain/NegativeProductReviewDetectedDomainEvent.js";
 import ProductReviewsConfigId from "./ProductReviewsConfigId.js";
 import ProductReviewsConfigMinimumReviews from "./ProductReviewsConfigMinimumReviews.js";
 import ProductReviewsConfigNegativeReviews from "./ProductReviewsConfigNegativeReviews.js";
@@ -12,7 +11,7 @@ export default class ProductReviewsConfig extends AggregateRoot{
   
   constructor (readonly id: ProductReviewsConfigId, public totalReviews: ProductReviewsConfigTotalReviews, 
     public negativeReviews:ProductReviewsConfigNegativeReviews, public negativeReviewsThreshold: ProductReviewsConfigNegativeReviewsThreshold,
-    readonly negativeReviewsRoundedPercentage: ProductReviewsConfigNegativeReviewsRoundedPercentage, public timeWindowStart: ProductReviewsConfigTimeWindowStart,
+    public negativeReviewsRoundedPercentage: ProductReviewsConfigNegativeReviewsRoundedPercentage, public timeWindowStart: ProductReviewsConfigTimeWindowStart,
     public minimumReviews:ProductReviewsConfigMinimumReviews
   ){
       super()
@@ -60,7 +59,7 @@ export default class ProductReviewsConfig extends AggregateRoot{
     }
 
     public updateNegativeReviewsRoundedPercentage(negativeReviewsRoundedPercentage:number):void {
-      this.minimumReviews = new ProductReviewsConfigNegativeReviewsRoundedPercentage(negativeReviewsRoundedPercentage)
+      this.negativeReviewsRoundedPercentage = new ProductReviewsConfigNegativeReviewsRoundedPercentage(negativeReviewsRoundedPercentage)
     }
 
     public incrementTotalReviewsByOne() {

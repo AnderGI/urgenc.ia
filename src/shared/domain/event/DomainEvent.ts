@@ -1,6 +1,5 @@
 import { v4 } from "uuid";
-
-export type DomainEventAttributes = Record<string, unknown>;
+import type { DomainEventAttributes } from "./DomainEventAttributes.js";
 
 export default abstract class DomainEvent {
 	public readonly eventId: string;

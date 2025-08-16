@@ -33,7 +33,7 @@ export const ProductReviewsConfigEntity = new EntitySchema<ProductReviewsConfig>
       transformer: ValueObjectTransformer(ProductReviewsConfigNegativeReviewsThreshold)
     },
     negativeReviewsRoundedPercentage: {
-      type: Number,
+      type: "decimal",
       transformer: ValueObjectTransformer(ProductReviewsConfigNegativeReviewsRoundedPercentage)
     },
     timeWindowStart: {

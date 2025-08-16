@@ -10,7 +10,8 @@ import ReviewSentimentClassifier from "../domain/ReviewSentimentClassifier";
 export default class Qwen314BSentimentClassifier implements SentimentClassifier {
   private readonly llm = new Ollama({
     baseUrl: "http://localhost:11434",
-    model: "qwen3:14b",
+    model: "qwen3:8b",
+    keepAlive: "30m"
   });
   
   private readonly classificationSchema = z.object({
