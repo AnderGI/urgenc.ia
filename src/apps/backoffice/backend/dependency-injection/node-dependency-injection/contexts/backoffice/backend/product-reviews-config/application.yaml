@@ -8,6 +8,9 @@ services:
   Contexts.Backoffice.Backend.product.reviews.config.application.create.ProductReviewsConfigCreator:
     class: ../../../../../../../../../contexts/backoffice/backend/product-reviews-config/application/create/ProductReviewsConfigCreator
     arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository"]
+  Contexts.Backoffice.Backend.product.reviews.config.application.create.CreateProductReviewsConfigOnProductRegisteredCommandHandler:
+    class: ../../../../../../../../../contexts/backoffice/backend/product-reviews-config/application/create/CreateProductReviewsConfigOnProductRegisteredCommandHandler
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.create.ProductReviewsConfigCreator"]
   Contexts.Backoffice.Backend.product.reviews.config.update.ProductReviewsConfigUpdater:
     class: ../../../../../../../../../contexts/backoffice/backend/product-reviews-config/application/update/ProductReviewsConfigUpdater
     arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository"]

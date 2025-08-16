@@ -13,5 +13,5 @@ services:
     tags: [{ "name": "domain-event-subscriber" }]
   Apps.Backoffice.Backend.subscribers.rabbitmq.CreateProductReviewsConfigOnProductCreated:
     class: ../../../../subscribers/rabbitmq/product-reviews-config/create/CreateProductReviewsConfigOnProductRegistered
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.create.ProductReviewsConfigCreator"]
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.create.CreateProductReviewsConfigOnProductRegisteredCommandHandler"]
     tags: [{ "name": "domain-event-subscriber" }]
