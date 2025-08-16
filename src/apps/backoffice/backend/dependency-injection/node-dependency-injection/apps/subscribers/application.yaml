@@ -1,7 +1,7 @@
 services:
   Apps.Backoffice.Backend.subscribers.rabbitmq.sentiment.classifier.ClassifyReviewContentOnProductReviewsCreated:
     class: ../../../../subscribers/rabbitmq/review-sentiment-classifier/classify-review-content/ClassifyReviewContentOnProductReviewsCreated
-    arguments: ["@Contexts.Backoffice.Backend.product.sentiment.classifier.application.create.ReviewContentSentimentClassifier"]
+    arguments: ["@Contexts.Backoffice.Backend.product.sentiment.classifier.application.create.LabelSentimentFromReviewContentCommandHandler"]
     tags: [{ "name": "domain-event-subscriber" }]
   Apps.Backoffice.Backend.subscribers.rabbitmq.IncreaseNegativeReviewOnNegativeProductReviewDetected:
     class: ../../../../subscribers/rabbitmq/product-reviews-config/increase-negative-review/IncreaseNegativeReviewOnNegativeProductReviewDetected

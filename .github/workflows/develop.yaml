@@ -10,18 +10,3 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Check curl exists
-        run: |
-          curl --help
-      - name: Check unzip exists
-        run: |
-          unzip --help
-      - name: Add executing grants to users
-        run: |
-          chmod 774  ./src/scripts/fnm/install.sh  
-      - name: Install fnm
-        run: |
-          ./src/scripts/fnm/install.sh
-      - name: Check fnm version
-        run: | 
-          fnm --version
