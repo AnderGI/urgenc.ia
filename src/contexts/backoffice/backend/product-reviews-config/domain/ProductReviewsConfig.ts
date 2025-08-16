@@ -1,5 +1,6 @@
 import AggregateRoot from "../../../../../shared/domain/AggregateRoot.js";
 import ProductReviewsConfigId from "./ProductReviewsConfigId.js";
+import ProductReviewsConfigMinimumReviews from "./ProductReviewsConfigMinimumReviews.js";
 import ProductReviewsConfigNegativeReviews from "./ProductReviewsConfigNegativeReviews.js";
 import ProductReviewsConfigNegativeReviewsRoundedPercentage from "./ProductReviewsConfigNegativeReviewsRoundedPercentage.js";
 import ProductReviewsConfigNegativeReviewsThreshold from "./ProductReviewsConfigNegativeReviewsThreshold.js";
@@ -10,16 +11,18 @@ export default class ProductReviewsConfig extends AggregateRoot{
   
   constructor (readonly id: ProductReviewsConfigId, public totalReviews: ProductReviewsConfigTotalReviews, 
     public negativeReviews:ProductReviewsConfigNegativeReviews, public negativeReviewsThreshold: ProductReviewsConfigNegativeReviewsThreshold,
-    readonly negativeReviewsRoundedPercentage: ProductReviewsConfigNegativeReviewsRoundedPercentage, public timeWindowStart: ProductReviewsConfigTimeWindowStart
+    public negativeReviewsRoundedPercentage: ProductReviewsConfigNegativeReviewsRoundedPercentage, public timeWindowStart: ProductReviewsConfigTimeWindowStart,
+    public minimumReviews:ProductReviewsConfigMinimumReviews
   ){
       super()
       
   }
   
-  public static fromPrimitives(id:string, totalReviews:number, negativeReviews:number, negativeReviewsThreshold:number, negativeReviewsRoundedPercentage:number, timeWindowStart:Date): ProductReviewsConfig {
+  public static fromPrimitives(id:string, totalReviews:number, negativeReviews:number, negativeReviewsThreshold:number, negativeReviewsRoundedPercentage:number, timeWindowStart:Date, minimumReviews: number): ProductReviewsConfig {
       return new ProductReviewsConfig(new ProductReviewsConfigId(id), new ProductReviewsConfigTotalReviews(totalReviews), 
       new ProductReviewsConfigNegativeReviews(negativeReviews), new ProductReviewsConfigNegativeReviewsThreshold(negativeReviewsThreshold),
-      new ProductReviewsConfigNegativeReviewsRoundedPercentage(negativeReviewsRoundedPercentage), new ProductReviewsConfigTimeWindowStart(timeWindowStart)
+      new ProductReviewsConfigNegativeReviewsRoundedPercentage(negativeReviewsRoundedPercentage), new ProductReviewsConfigTimeWindowStart(timeWindowStart),
+      new ProductReviewsConfigMinimumReviews(minimumReviews)
     )
     }
   
@@ -30,6 +33,7 @@ export default class ProductReviewsConfig extends AggregateRoot{
     negativeReviewsThreshold: number;
     negativeReviewsRoundedPercentage:number;
     timeWindowStart: string;
+    minimumReviews:number;
   } {
       return {
         id: this.id.value,
@@ -37,16 +41,25 @@ export default class ProductReviewsConfig extends AggregateRoot{
         negativeReviews: this.negativeReviews.value,
         negativeReviewsThreshold: this.negativeReviewsThreshold.value,
         negativeReviewsRoundedPercentage: this.negativeReviewsRoundedPercentage.value,
-        timeWindowStart: this.timeWindowStart.value.toISOString()
+        timeWindowStart: this.timeWindowStart.value.toISOString(),
+        minimumReviews: this.minimumReviews.value
       }
     }
 
-    public updateNegativeReviewsThreshold(_:ProductReviewsConfigNegativeReviewsThreshold):void {
-      this.negativeReviewsThreshold = _
+    public updateNegativeReviewsThreshold(negativeReviewsThreshold:number):void {
+      this.negativeReviewsThreshold = new ProductReviewsConfigNegativeReviews(negativeReviewsThreshold)
     }
 
-    public updatetimeWindowStart(_:ProductReviewsConfigTimeWindowStart):void {
-      this.timeWindowStart = _
+    public updatetimeWindowStart(timeWindowStart:Date):void {
+      this.timeWindowStart = new ProductReviewsConfigTimeWindowStart(timeWindowStart)
+    }
+
+    public updateMinimumReviews(minimumReviews:number):void {
+      this.minimumReviews = new ProductReviewsConfigMinimumReviews(minimumReviews)
+    }
+
+    public updateNegativeReviewsRoundedPercentage(negativeReviewsRoundedPercentage:number):void {
+      this.negativeReviewsRoundedPercentage = new ProductReviewsConfigNegativeReviewsRoundedPercentage(negativeReviewsRoundedPercentage)
     }
 
     public incrementTotalReviewsByOne() {

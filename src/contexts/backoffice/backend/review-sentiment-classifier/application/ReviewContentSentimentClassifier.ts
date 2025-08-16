@@ -11,6 +11,7 @@ export default class ReviewContentSentimentClassifier {
     console.log('ReviewContentSentimentClassifier#run')
     const reviewSentimentClassifier = ReviewSentimentClassifier.fromPrimitives(productId, reviewContent)
     const reviewSentiment = await this.classifier.classify(reviewSentimentClassifier)
+    console.log(reviewContent + " ||| " + reviewSentiment.value)
     if(reviewSentiment.isNegative()) {
       console.log('Negative REVIEW need to publis event')
       console.log(reviewSentiment.value)

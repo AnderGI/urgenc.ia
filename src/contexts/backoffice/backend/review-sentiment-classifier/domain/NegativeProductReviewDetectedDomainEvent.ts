@@ -1,5 +1,5 @@
-import DomainEvent, { DomainEventAttributes } from "../../../../../shared/domain/event/DomainEvent.js";
-
+import DomainEvent from "../../../../../shared/domain/event/DomainEvent";
+import type {DomainEventAttributes} from "../../../../../shared/domain/event/DomainEventAttributes";
 export default class NegativeProductReviewDetectedDomainEvent extends DomainEvent {
   static readonly eventName: string = 'andergi.backoffice.backend.event.negative_product_review_detected'
   constructor(

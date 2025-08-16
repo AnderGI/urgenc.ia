@@ -13,6 +13,14 @@ export default class ProductReviewsConfigNegativeReviewsIncrementer {
     console.log(productReviewsConfig.toPrimitives())
     productReviewsConfig.incrementNegativeReviewsByOne()
     console.log(productReviewsConfig.toPrimitives())
+
+    if(productReviewsConfig.totalReviews.isEqualOrGreaterThan(productReviewsConfig.minimumReviews)) {
+      console.log('update percentage')
+      const notRounded = productReviewsConfig.negativeReviews.value / productReviewsConfig.totalReviews.value;
+      const negativeReviewsRoundedPercentagePrimitive = Math.round(notRounded * 10) / 10;
+      productReviewsConfig.updateNegativeReviewsRoundedPercentage(negativeReviewsRoundedPercentagePrimitive)
+    }
+
     this.repository.save(productReviewsConfig)
   }
 }

@@ -7,6 +7,8 @@ export default class CreateProductReviewsConfigOnProductRegisteredCommand extend
   readonly negativeReviewsThreshold:number = CreateProductReviewsConfigOnProductRegisteredCommand.CREATION_DEFAULT_VALUE; 
   readonly negativeReviewsRoundedPercentage:number = CreateProductReviewsConfigOnProductRegisteredCommand.CREATION_DEFAULT_VALUE; 
   readonly timeWindowStart:Date = new Date();
+  readonly minimunmReviews:number = CreateProductReviewsConfigOnProductRegisteredCommand.CREATION_DEFAULT_VALUE;
+
   constructor (readonly productId:string){
     super()
   }

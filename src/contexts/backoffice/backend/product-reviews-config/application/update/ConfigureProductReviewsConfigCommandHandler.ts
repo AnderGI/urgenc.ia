@@ -11,6 +11,6 @@ export default class ConfigureProductReviewsConfigCommandHandler implements Comm
   }
   
   async handle(command: ConfigureProductReviewsConfigCommand): Promise<void> {
-    this.configUpdater.run(command.productId, command.negativeReviewsThreshold, command.timeWindowStart)
+    this.configUpdater.run(command.productId, command.negativeReviewsThreshold, command.timeWindowStart, command.minimumReviews)
   }
 }
