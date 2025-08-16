@@ -2,6 +2,9 @@ services:
   Contexts.Backoffice.Backend.product.reviews.config.application.increment.ProductReviewsConfigReviewsIncrementer:
     class: ../../../../../../../../../contexts/backoffice/backend/product-reviews-config/application/increment/ProductReviewsConfigReviewsIncrementer
     arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository"]
+  Contexts.Backoffice.Backend.product.reviews.config.application.increment.IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommandHandler:
+    class: ../../../../../../../../../contexts/backoffice/backend/product-reviews-config/application/increment/IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommandHandler
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.increment.ProductReviewsConfigReviewsIncrementer"]
   Contexts.Backoffice.Backend.product.reviews.config.application.increment.negative.reviews.ProductReviewsConfigNegativeReviewsIncrementer:
     class: ../../../../../../../../../contexts/backoffice/backend/product-reviews-config/application/increment-negative-reviews/ProductReviewsConfigNegativeReviewsIncrementer
     arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository"]

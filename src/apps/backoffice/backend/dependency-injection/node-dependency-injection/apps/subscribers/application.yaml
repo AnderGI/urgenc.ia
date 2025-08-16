@@ -9,7 +9,7 @@ services:
     tags: [{ "name": "domain-event-subscriber" }]
   Apps.Backoffice.Backend.subscribers.rabbitmq.IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreated:
     class: ../../../../subscribers/rabbitmq/product-reviews-config/increment-product-reviews-config-total-reviews/IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreated
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.increment.ProductReviewsConfigReviewsIncrementer"]
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.increment.IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommandHandler"]
     tags: [{ "name": "domain-event-subscriber" }]
   Apps.Backoffice.Backend.subscribers.rabbitmq.CreateProductReviewsConfigOnProductCreated:
     class: ../../../../subscribers/rabbitmq/product-reviews-config/create/CreateProductReviewsConfigOnProductRegistered

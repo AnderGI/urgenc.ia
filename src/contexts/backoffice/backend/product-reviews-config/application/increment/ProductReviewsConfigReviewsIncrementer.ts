@@ -1,16 +1,15 @@
-import IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommand from "../../../../../../apps/backoffice/backend/subscribers/rabbitmq/product-reviews-config/increment-product-reviews-config-total-reviews/IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommand.js"
 import ProductReviewsConfig from "../../domain/ProductReviewsConfig.js"
 import ProductReviewsConfigId from "../../domain/ProductReviewsConfigId.js"
 import ProductReviewsConfigRepository from "../../domain/ProductReviewsConfigRepository.js"
 
 export default class ProductReviewsConfigReviewsIncrementer {
   constructor(private readonly repository:ProductReviewsConfigRepository){}
-  async run(_:IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommand) {
+  async run(idProduct:string) {
     console.log('ProductReviewsConfigReviewsIncrementer#run')
-    console.log(_)
-    const productReviewsConfig: ProductReviewsConfig = await this.repository.search(new ProductReviewsConfigId(_.idProduct));
+    console.log()
+    const productReviewsConfig: ProductReviewsConfig = await this.repository.search(new ProductReviewsConfigId(idProduct));
     if(!productReviewsConfig) {
-      throw new Error(`Product Reviews Config with id <${_.idProduct}> not found`)
+      throw new Error(`Product Reviews Config with id <${idProduct}> not found`)
     }
     console.log(productReviewsConfig.toPrimitives())
     productReviewsConfig.incrementTotalReviewsByOne()
