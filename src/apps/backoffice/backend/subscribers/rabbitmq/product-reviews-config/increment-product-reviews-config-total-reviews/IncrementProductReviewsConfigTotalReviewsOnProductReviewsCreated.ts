@@ -1,5 +1,5 @@
 import type DomainEventClass from "../../../../../../../shared/domain/event/DomainEventClass.js";
-import type { DomainEventSubscriber } from "../../../../../../../shared/domain/event/DomainEventSubscriber.js";
+import type DomainEventSubscriber from "../../../../../../../shared/domain/event/DomainEventSubscriber.js";
 import ProductReviewsCreatedDomainEvent from "../../../../../../../contexts/backoffice/backend/product-reviews/application/create/ProductReviewsCreatedDomainEvent.js";
 import IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommand from "./IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommand.js";
 import type IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommandHandler from "../../../../../../../contexts/backoffice/backend/product-reviews-config/application/increment/IncrementProductReviewsConfigTotalReviewsOnProductReviewsCreatedCommandHandler.js";

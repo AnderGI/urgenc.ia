@@ -1,6 +1,6 @@
-import AggregateRoot from "../../../../../shared/domain/AggregateRoot";
-import ProductId from "../../product/domain/ProductId";
-import ReviewContent from "./ReviewContent";
+import AggregateRoot from "../../../../../shared/domain/AggregateRoot.js";
+import ProductId from "../../product/domain/ProductId.js";
+import ReviewContent from "./ReviewContent.js";
 
 export default class ReviewSentimentClassifier extends AggregateRoot{
   constructor (readonly id:ProductId, readonly content:ReviewContent){

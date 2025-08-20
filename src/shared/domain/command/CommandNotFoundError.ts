@@ -1,5 +1,5 @@
-import { Command } from "./Command";
-import { CommandHandler } from "./CommandHandler";
+import Command from "./Command.js";
+import type CommandHandler from "./CommandHandler.js";
 
 export class CommandNotFoundError extends Error {
   constructor(handler: CommandHandler<Command>) {

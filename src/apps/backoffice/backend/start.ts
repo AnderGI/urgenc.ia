@@ -1,4 +1,4 @@
-import container from "./dependency-injection/node-dependency-injection/index";
+import container from "./dependency-injection/node-dependency-injection/index.js";
 
 try {
   const app = container.get("Apps.Backoffice.Backend.BackofficeBackendApp");

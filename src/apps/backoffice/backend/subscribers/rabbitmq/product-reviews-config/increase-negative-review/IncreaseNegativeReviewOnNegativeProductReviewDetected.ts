@@ -1,7 +1,7 @@
 import type IncrementProductReviewsConfigNegativeReviewsOnProductReviewsCreatedCommandHandler from "../../../../../../../contexts/backoffice/backend/product-reviews-config/application/increment-negative-reviews/IncrementProductReviewsConfigNegativeReviewsOnProductReviewsCreatedCommandHandler.js";
 import NegativeProductReviewDetectedDomainEvent from "../../../../../../../contexts/backoffice/backend/review-sentiment-classifier/domain/NegativeProductReviewDetectedDomainEvent.js";
 import type DomainEventClass from "../../../../../../../shared/domain/event/DomainEventClass.js";
-import type { DomainEventSubscriber } from "../../../../../../../shared/domain/event/DomainEventSubscriber.js";
+import type DomainEventSubscriber from "../../../../../../../shared/domain/event/DomainEventSubscriber.js";
 import IncrementProductReviewsConfigNegativeReviewsOnProductReviewsCreatedCommand from "./IncrementProductReviewsConfigNegativeReviewsOnProductReviewsCreatedCommand.js";
 
 export default class IncreaseNegativeReviewOnNegativeProductReviewDetected implements DomainEventSubscriber<NegativeProductReviewDetectedDomainEvent>{

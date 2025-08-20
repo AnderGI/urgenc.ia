@@ -199,17 +199,17 @@ export default class RabbitMqConnection {
 
 	private incrementRedeliveryCount(message: ConsumeMessage) {
 		if (this.hasBeenRedelivered(message)) {
-			const count = parseInt(message.properties.headers["redelivery_count"], 10);
-			message.properties.headers["redelivery_count"] = count + 1;
+			const count = parseInt(message.properties.headers!["redelivery_count"], 10);
+			message.properties.headers!["redelivery_count"] = count + 1;
 		} else {
-			message.properties.headers["redelivery_count"] = 1;
+			message.properties.headers!["redelivery_count"] = 1;
 		}
 
 		return message.properties.headers;
 	}
 
 	private hasBeenRedelivered(message: ConsumeMessage) {
-		return message.properties.headers["redelivery_count"] !== undefined;
+		return message.properties.headers!["redelivery_count"] !== undefined;
 	}
 	
 }

@@ -1,5 +1,5 @@
-import StringValueObject from "../../../../../shared/domain/StringValueObject";
-import ReviewSentimentEnum from "./ReviewSentimentEnum";
+import StringValueObject from "../../../../../shared/domain/StringValueObject.js"
+import ReviewSentimentEnum from "./ReviewSentimentEnum.js";
 
 export default class ReviewSentiment extends StringValueObject{
 

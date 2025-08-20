@@ -1,8 +1,8 @@
-import EventBus from "../../../../../../shared/domain/event/EventBus";
-import ProductReviews from "../../domain/ProductReviews";
-import ProductReviewsRepository from "../../domain/ProductReviewsRepository";
-import ProductReviewsCreatedDomainEvent from "./ProductReviewsCreatedDomainEvent";
-import AddProductReviewCommand from '../../../../../../apps/backoffice/backend/controllers/add-product-reviews/AddProductReviewsCommand'
+import type EventBus from "../../../../../../shared/domain/event/EventBus.js";
+import ProductReviews from "../../domain/ProductReviews.js";
+import type ProductReviewsRepository from "../../domain/ProductReviewsRepository.js";
+import ProductReviewsCreatedDomainEvent from "./ProductReviewsCreatedDomainEvent.js";
+import AddProductReviewCommand from '../../../../../../apps/backoffice/backend/controllers/add-product-reviews/AddProductReviewsCommand.js'
 export default class ProductReviewsCreator {
   constructor (private readonly repo:ProductReviewsRepository, readonly eventBus:EventBus){}
 

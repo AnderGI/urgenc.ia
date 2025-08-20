@@ -1,4 +1,4 @@
-import StringValueObject from "../../../../../shared/domain/StringValueObject";
+import StringValueObject from "../../../../../shared/domain/StringValueObject.js";
 
 export default class ReviewContent extends StringValueObject{
   constructor (value:string){

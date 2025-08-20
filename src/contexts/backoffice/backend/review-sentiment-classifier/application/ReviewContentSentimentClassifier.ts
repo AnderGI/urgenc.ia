@@ -1,7 +1,7 @@
-import EventBus from "../../../../../shared/domain/event/EventBus";
-import NegativeProductReviewDetectedDomainEvent from "../domain/NegativeProductReviewDetectedDomainEvent";
-import ReviewSentimentClassifier from "../domain/ReviewSentimentClassifier";
-import SentimentClassifier from "../domain/SentimentClassifier";
+import type EventBus from "../../../../../shared/domain/event/EventBus.js";
+import NegativeProductReviewDetectedDomainEvent from "../domain/NegativeProductReviewDetectedDomainEvent.js";
+import ReviewSentimentClassifier from "../domain/ReviewSentimentClassifier.js";
+import type SentimentClassifier from "../domain/SentimentClassifier.js";
 
 export default class ReviewContentSentimentClassifier {
 

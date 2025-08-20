@@ -1,7 +1,7 @@
-import { EventEmitter } from "stream";
-import { DomainEvent } from "../../domain/event/DomainEvent";
-import { EventBus } from "../../domain/event/EventBus";
-import { DomainEventSubscriber } from "../../domain/event/DomainEventSubscriber";
+import EventEmitter from "stream";
+import DomainEvent  from "../../domain/event/DomainEvent.js";
+import type EventBus from "../../domain/event/EventBus.js";
+import type DomainEventSubscriber from "../../domain/event/DomainEventSubscriber.js";
 
 export default class NodeJSEventEmitterEventBus implements EventBus {
   private readonly eventEmitter: EventEmitter;

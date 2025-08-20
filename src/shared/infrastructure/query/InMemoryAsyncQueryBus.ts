@@ -1,7 +1,7 @@
-import Query from "../../domain/query/Query";
-import QueryBus from "../../domain/query/QueryBus";
-import Response from "../../domain/query/Response";
-import QueryHandlers from "./QueryHandlers";
+import Query from "../../domain/query/Query.js";
+import type QueryBus from "../../domain/query/QueryBus.js";
+import Response from "../../domain/query/Response.js";
+import QueryHandlers from "./QueryHandlers.js";
 
 export default class InMemoryAsyncQueryBus implements QueryBus {
   constructor(private queryHandlers: QueryHandlers) {}

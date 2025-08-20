@@ -1,6 +1,6 @@
-import type { Nullable } from "../../../../../shared/domain/Nullable";
-import ProductReviews from "./ProductReviews";
-import ProductReviewsId from "./ProductReviewsId";
+import type { Nullable } from "../../../../../shared/domain/Nullable.js";
+import ProductReviews from "./ProductReviews.js";
+import ProductReviewsId from "./ProductReviewsId.js";
 
 export default interface ProductReviewsRepository {
   save(_:ProductReviews): Promise<void>;

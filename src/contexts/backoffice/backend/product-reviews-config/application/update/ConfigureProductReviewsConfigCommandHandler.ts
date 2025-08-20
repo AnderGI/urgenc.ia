@@ -1,7 +1,7 @@
-import CommandHandler from "../../../../../../shared/domain/command/CommandHandler";
+import type CommandHandler from "../../../../../../shared/domain/command/CommandHandler.js";
 import ConfigureProductReviewsConfigCommand from '../../../../../../apps/backoffice/backend/controllers/configure-product-reviews-config/ConfigureProductReviewsConfigCommand.js'
-import Command from "../../../../../../shared/domain/command/Command";
-import ProductReviewsConfigUpdater from "./ProductReviewsConfigUpdater";
+import Command from "../../../../../../shared/domain/command/Command.js";
+import ProductReviewsConfigUpdater from "./ProductReviewsConfigUpdater.js";
 
 export default class ConfigureProductReviewsConfigCommandHandler implements CommandHandler<ConfigureProductReviewsConfigCommand>{
   constructor (private readonly configUpdater:ProductReviewsConfigUpdater){}

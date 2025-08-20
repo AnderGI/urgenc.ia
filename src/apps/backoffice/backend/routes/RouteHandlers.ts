@@ -1,5 +1,5 @@
 import { Router } from "express";
-import RouteHandler from "./RouterHandler";
+import type RouteHandler from "./RouterHandler.js";
 
 export default class RouteHandlers {
   constructor(private readonly routeHAndlers: RouteHandler[]) {}

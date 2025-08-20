@@ -1,4 +1,4 @@
-import { Nullable } from "../../../../../shared/domain/Nullable.js";
+import { type Nullable } from "../../../../../shared/domain/Nullable.js";
 import ProductReviewsConfig from "./ProductReviewsConfig.js";
 import ProductReviewsConfigId from "./ProductReviewsConfigId.js";
 

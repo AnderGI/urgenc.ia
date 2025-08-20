@@ -1,6 +1,6 @@
 import ProductRegisteredDomainEvent from "../../../../../../../contexts/backoffice/backend/product/application/register-product/ProductRegisteredDomainEvent.js";
 import type DomainEventClass from "../../../../../../../shared/domain/event/DomainEventClass.js";
-import type { DomainEventSubscriber } from "../../../../../../../shared/domain/event/DomainEventSubscriber.js";
+import type DomainEventSubscriber from "../../../../../../../shared/domain/event/DomainEventSubscriber.js";
 import type CreateProductReviewsConfigOnProductRegisteredCommandHandler from "../../../../../../../contexts/backoffice/backend/product-reviews-config/application/create/CreateProductReviewsConfigOnProductRegisteredCommandHandler.js";
 import CreateProductReviewsConfigOnProductRegisteredCommand from "./CreateProductReviewsConfigOnProductRegisteredCommand.js";
 

@@ -1,8 +1,8 @@
-import Query from "../../domain/query/Query";
-import Response from "../../domain/query/Response";
-import QueryHandler from "../../domain/query/QueryHandler";
-import QueryNotFoundError from "../../domain/query/QueryNotFoundError";
-import QueryNotRegisteredError from "../../domain/query/QueryNotRegisteredError";
+import Query from "../../domain/query/Query.js";
+import Response from "../../domain/query/Response.js";
+import type QueryHandler from "../../domain/query/QueryHandler.js";
+import QueryNotFoundError from "../../domain/query/QueryNotFoundError.js";
+import QueryNotRegisteredError from "../../domain/query/QueryNotRegisteredError.js";
 
 export default class QueryHandlers {
   private readonly queryToHandlerRelation = new Map<

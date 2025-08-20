@@ -1,6 +1,6 @@
-import Query from "./Query";
-import Response from "./Response";
-import QueryHandler from "./QueryHandler";
+import Query from "./Query.js";
+import Response from "./Response.js";
+import type QueryHandler from "./QueryHandler.js";
 
 export default class QueryNotFoundError extends Error {
   constructor(handler: QueryHandler<Query, Response>) {

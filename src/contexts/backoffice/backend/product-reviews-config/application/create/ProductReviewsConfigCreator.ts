@@ -1,5 +1,5 @@
 import ProductReviewsConfig from "../../domain/ProductReviewsConfig.js";
-import ProductReviewsConfigRepository from "../../domain/ProductReviewsConfigRepository.js";
+import type ProductReviewsConfigRepository from "../../domain/ProductReviewsConfigRepository.js";
 
 export default class ProductReviewsConfigCreator {
   constructor(readonly repo:ProductReviewsConfigRepository){}

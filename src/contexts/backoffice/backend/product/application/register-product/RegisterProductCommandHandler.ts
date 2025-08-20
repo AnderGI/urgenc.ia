@@ -1,7 +1,7 @@
-import RegisterProductCommand from "../../../../../../apps/backoffice/backend/controllers/register-product/RegisterProductCommand";
-import Command from "../../../../../../shared/domain/command/Command";
-import CommandHandler from "../../../../../../shared/domain/command/CommandHandler";
-import ProductRegisterer from "./ProductRegisterer";
+import RegisterProductCommand from "../../../../../../apps/backoffice/backend/controllers/register-product/RegisterProductCommand.js";
+import Command from "../../../../../../shared/domain/command/Command.js";
+import type CommandHandler from "../../../../../../shared/domain/command/CommandHandler.js";
+import ProductRegisterer from "./ProductRegisterer.js";
 
 export default class RegisterProductCommandHandler implements CommandHandler<RegisterProductCommand>{
   

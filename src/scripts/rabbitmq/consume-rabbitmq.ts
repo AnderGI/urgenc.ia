@@ -1,7 +1,7 @@
 import type { ConsumeMessage } from "amqplib";
 import container from "../../apps/backoffice/backend/dependency-injection/node-dependency-injection/index.js";
 import type DomainEvent from "../../shared/domain/event/DomainEvent.js";
-import type { DomainEventSubscriber } from "../../shared/domain/event/DomainEventSubscriber.js";
+import type DomainEventSubscriber from "../../shared/domain/event/DomainEventSubscriber.js";
 import RabbitMqConnection from "../../shared/infrastructure/event/rabbitmq/RabbitMqConnection.js";
 import type DomainEventClass from "../../shared/domain/event/DomainEventClass.js";
 import DomainEventJsonDeserializer from "../../shared/infrastructure/event/DomainEventJsonDeserializer.js";
@@ -61,16 +61,16 @@ async function handleError(message: ConsumeMessage, queueName: string): Promise<
 
 function hasBeenRedeliveredTooMuch(message: ConsumeMessage): boolean {
 	if (hasBeenRedelivered(message)) {
-		const count = parseInt(message.properties.headers["redelivery_count"], 10);
+		const count = parseInt(message.properties.headers!["redelivery_count"], 10);
 
-		return count >= maxRetries;
+		return count >= 3;
 	}
 
 	return false;
 }
 
 function hasBeenRedelivered(message: ConsumeMessage): boolean {
-	return message.properties.headers["redelivery_count"] !== undefined;
+	return message.properties.headers!["redelivery_count"] !== undefined;
 }
 
 main().catch(console.error);

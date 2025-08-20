@@ -1,4 +1,4 @@
-import StringValueObject from "../../../../shared/domain/StringValueObject";
+import StringValueObject from "../../../../shared/domain/StringValueObject.js";
 
 export default class Route extends StringValueObject {
   constructor(readonly value: string) {

@@ -1,8 +1,8 @@
-import FindProductByIdQuery from '../../../../../../apps/backoffice/backend/controllers/get-product-by-id/FindProductByIdQuery';
-import Query from '../../../../../../shared/domain/query/Query';
-import QueryHandler from '../../../../../../shared/domain/query/QueryHandler'
-import ProductByIdFinder from './ProductByIdFinder';
-import ProductByIdFinderResponse from './ProductByIdFinderResponse';
+import FindProductByIdQuery from '../../../../../../apps/backoffice/backend/controllers/get-product-by-id/FindProductByIdQuery.js';
+import Query from '../../../../../../shared/domain/query/Query.js';
+import type QueryHandler from '../../../../../../shared/domain/query/QueryHandler.js'
+import ProductByIdFinder from './ProductByIdFinder.js';
+import ProductByIdFinderResponse from './ProductByIdFinderResponse.js';
 
 export default class FindProductByIdQueryHandler implements QueryHandler<FindProductByIdQuery, ProductByIdFinderResponse>{
   constructor (private readonly finder:ProductByIdFinder){}

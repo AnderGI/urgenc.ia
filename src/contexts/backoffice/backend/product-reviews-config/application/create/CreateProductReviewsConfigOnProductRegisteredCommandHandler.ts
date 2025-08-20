@@ -1,7 +1,7 @@
-import CommandHandler from "../../../../../../shared/domain/command/CommandHandler";
+import type CommandHandler from "../../../../../../shared/domain/command/CommandHandler.js";
 import CreateProductReviewsConfigOnProductRegisteredCommand from '../../../../../../apps/backoffice/backend/subscribers/rabbitmq/product-reviews-config/create/CreateProductReviewsConfigOnProductRegisteredCommand.js'
-import Command from "../../../../../../shared/domain/command/Command";
-import ProductReviewsConfigCreator from "./ProductReviewsConfigCreator";
+import Command from "../../../../../../shared/domain/command/Command.js";
+import ProductReviewsConfigCreator from "./ProductReviewsConfigCreator.js";
 
 export default class CreateProductReviewsConfigOnProductRegisteredCommandHandler implements CommandHandler<CreateProductReviewsConfigOnProductRegisteredCommand>{
   constructor (private readonly creator:ProductReviewsConfigCreator){}

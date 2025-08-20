@@ -1,8 +1,8 @@
-import Product from "../../domain/Product";
-import ProductRepository from "../../domain/ProductRepository";
-import EventBus from '../../../../../../shared/domain/event/EventBus.js'
-import ProductRegisteredDomainEvent from './ProductRegisteredDomainEvent'
-import RegisterProductCommand from "../../../../../../apps/backoffice/backend/controllers/register-product/RegisterProductCommand";
+import Product from "../../domain/Product.js";
+import type ProductRepository from "../../domain/ProductRepository.js";
+import type EventBus from '../../../../../../shared/domain/event/EventBus.js'
+import ProductRegisteredDomainEvent from './ProductRegisteredDomainEvent.js'
+import RegisterProductCommand from "../../../../../../apps/backoffice/backend/controllers/register-product/RegisterProductCommand.js";
 
 export default class ProductRegisterer {
   constructor (readonly repository:ProductRepository, readonly eventBus:EventBus) {}

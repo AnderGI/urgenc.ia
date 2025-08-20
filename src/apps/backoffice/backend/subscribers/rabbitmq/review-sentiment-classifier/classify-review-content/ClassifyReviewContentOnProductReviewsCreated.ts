@@ -1,7 +1,7 @@
 import ProductReviewsCreatedDomainEvent from "../../../../../../../contexts/backoffice/backend/product-reviews/application/create/ProductReviewsCreatedDomainEvent.js";
 import type LabelSentimentFromReviewContentCommandHandler from "../../../../../../../contexts/backoffice/backend/review-sentiment-classifier/application/LabelSentimentFromReviewContentCommandHandler.js";
 import type DomainEventClass from "../../../../../../../shared/domain/event/DomainEventClass.js";
-import type { DomainEventSubscriber } from "../../../../../../../shared/domain/event/DomainEventSubscriber.js";
+import type DomainEventSubscriber from "../../../../../../../shared/domain/event/DomainEventSubscriber.js";
 import LabelSentimentFromReviewContentCommand from "./LabelSentimentFromReviewContentCommand.js";
 
 export default class ClassifyReviewContentOnProductReviewsCreated implements DomainEventSubscriber<ProductReviewsCreatedDomainEvent> {

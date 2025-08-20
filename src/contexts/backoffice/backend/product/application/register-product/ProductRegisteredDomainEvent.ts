@@ -1,5 +1,5 @@
 import DomainEvent from '../../../../../../shared/domain/event/DomainEvent.js';
-import { DomainEventAttributes } from '../../../../../../shared/domain/event/DomainEventAttributes.js';
+import { type DomainEventAttributes } from '../../../../../../shared/domain/event/DomainEventAttributes.js';
 
 export default class ProductRegisteredDomainEvent extends DomainEvent {
   static readonly eventName: string = 'andergi.backoffice.backend.event.product_registered'

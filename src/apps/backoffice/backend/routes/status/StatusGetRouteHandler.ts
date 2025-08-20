@@ -1,5 +1,5 @@
-import RouteHandler from "./../RouterHandler.js";
-import { Router, Request, Response } from "express";
+import type RouteHandler from "./../RouterHandler.js";
+import { Router, type Request, type Response } from "express";
 import StatusGetController from "./../../controllers/status/StatusGetController.js";
 
 export default class StatusGetRouteHandler implements RouteHandler {

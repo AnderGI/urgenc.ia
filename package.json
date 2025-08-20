@@ -6,11 +6,15 @@
     "build": "turbo run build",
     "lint": "eslint .",
     "format": "pnpm exec prettier . --write",
-    "test": "vitest --run",
-    "dev": "turbo run dev",
-    "test:features": "bash ./tests/apps/backoffice/backend/setup.sh"
+    "dev": "tsx ./src/apps/backoffice/backend/start.ts",
+    "prod": "npx tsc -p tsconfig.json",
+    "clear": "rm -rf ./dist",
+    "copyfiles": "./demo.sh",
+    "build:prod": "pnpm run clear && pnpm run prod && pnpm run copyfiles",
+    "exec:prod": "node dist/apps/backoffice/backend/start.js"
   },
   "type": "module",
+  "exports": "./dist/apps/backoffice/backend/start.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -23,10 +27,8 @@
     "node-dependency-injection": "^2.7.3",
     "prettier": "3.6.2",
     "tsx": "^4.20.3",
-    "turbo": "^2.5.5",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.38.0",
-    "vitest": "^3.2.4"
+    "typescript-eslint": "^8.38.0"
   },
   "dependencies": {
     "@langchain/community": "^0.3.50",

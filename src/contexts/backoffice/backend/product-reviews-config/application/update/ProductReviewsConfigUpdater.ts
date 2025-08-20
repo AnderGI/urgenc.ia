@@ -1,5 +1,5 @@
 import ProductReviewsConfigId from "../../domain/ProductReviewsConfigId.js";
-import ProductReviewsConfigRepository from "../../domain/ProductReviewsConfigRepository.js";
+import type ProductReviewsConfigRepository from "../../domain/ProductReviewsConfigRepository.js";
 
 
 export default class ProductReviewsConfigUpdater {

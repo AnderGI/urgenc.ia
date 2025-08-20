@@ -2,10 +2,10 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { Ollama } from "@langchain/ollama";
 import { StructuredOutputParser } from "@langchain/core/output_parsers";
 import * as z from "zod";
-import SentimentClassifier from "../domain/SentimentClassifier";
-import ReviewSentiment from "../domain/ReviewSentiment";
-import ReviewSentimentEnum from "../domain/ReviewSentimentEnum";
-import ReviewSentimentClassifier from "../domain/ReviewSentimentClassifier";
+import type SentimentClassifier from "../domain/SentimentClassifier.js";
+import ReviewSentiment from "../domain/ReviewSentiment.js";
+import ReviewSentimentEnum from "../domain/ReviewSentimentEnum.js";
+import ReviewSentimentClassifier from "../domain/ReviewSentimentClassifier.js";
 
 export default class Qwen314BSentimentClassifier implements SentimentClassifier {
   private readonly llm = new Ollama({
