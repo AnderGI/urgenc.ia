@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ${PWD}
+      dockerfile: Dockerfile
+      network: host
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+      - events
+      - ai
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=user
+      - POSTGRES_USER=user
+      - POSTGRES_DB=backoffice-backend
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+      - urgencia_network
+  events:
+    image: rabbitmq:4.1-management
+    container_name: events
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=user
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: always
+    networks:
+      - urgencia_network
+  ai:
+    image: ollama/ollama:0.11.4
+    container_name: ai
+    ports:
+      - "11434:11434"
+    networks:
+      - urgencia_network
+networks:
+  urgencia_network:
+    driver: bridge

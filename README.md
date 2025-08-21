@@ -28,3 +28,4 @@ When the percentage of negative reviews for a product exceeds a configurable thr
 - 🧠 RAG-based report generation for root-cause analysis.
 - 📧 Notifications with full summaries when a crisis is detected.
 
+docker run --rm -it -p 5000:5000 urgencia:latest

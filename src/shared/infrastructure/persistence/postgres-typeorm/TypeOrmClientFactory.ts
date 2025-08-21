@@ -9,8 +9,7 @@ const fileUrl = fileURLToPath(moduleUrl)
 const __dirname = dirname(fileUrl)
 
 export class TypeOrmClientFactory {
-  static async createClient(contextName: string, config: TypeOrmConfig): Promise<DataSource> {
-    console.log(config.host)
+  static async createClient(contextName: string, config: TypeOrmConfig): Promise<DataSource> { 
       const connection = new DataSource({
         name: contextName,
         type: 'postgres',

@@ -1,37 +1,52 @@
-version: "3.8"
-
 services:
+  app:
+    build:
+      context: ${PWD}
+      dockerfile: Dockerfile
+      network: host
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+      events:
+        condition: service_healthy
+        restart: true
+      ai:
+        condition: service_started
   db:
     image: postgres
     container_name: db
-    environment:
-      - POSTGRES_PASSWORD=user
-      - POSTGRES_USER=user
-      - POSTGRES_DB=backoffice-backend
+    env_file:
+      - .env
     ports:
       - "5432:5432"
     restart: always
-    networks:
-      - urgencia_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d backoffice-backend"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
   events:
     image: rabbitmq:4.1-management
     container_name: events
-    environment:
-      - RABBITMQ_DEFAULT_USER=user
-      - RABBITMQ_DEFAULT_PASS=user
+    env_file:
+      - .env
     ports:
       - "5672:5672"
       - "15672:15672"
     restart: always
-    networks:
-      - urgencia_network
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 10s
+      retries: 5
   ai:
     image: ollama/ollama:0.11.4
     container_name: ai
     ports:
       - "11434:11434"
-    networks:
-      - urgencia_network
-networks:
-  urgencia_network:
-    driver: bridge

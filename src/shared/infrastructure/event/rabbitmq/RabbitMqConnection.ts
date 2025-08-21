@@ -15,12 +15,12 @@ export default class RabbitMqConnection {
 	amqpConnection?: amqplib.Connection;
 	amqpChannel?: amqplib.ConfirmChannel;
 	private readonly settings: Settings = {
-		username: "user",
-		password: "user",
-		vhost: "/",
+		username: process.env.RABBITMQ_DEFAULT_USER as string,
+		password: process.env.RABBITMQ_DEFAULT_PASS as string,
+		vhost: process.env.RABBITMQ_VHOST as string,
 		connection: {
-			hostname: "localhost",
-			port: 5672,
+			hostname: process.env.RABBITMQ_HOST as string,
+			port: process.env.RABBITMQ_PORT as unknown as number,
 		},
 	};
 
