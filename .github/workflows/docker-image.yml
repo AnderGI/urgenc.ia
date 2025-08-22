@@ -39,11 +39,11 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: latest
+          tags: andergi/urgencia:latest
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v2
         with:
-          subject-name: index.docker.io/my-docker-hub-namespace/my-docker-hub-repository
+          subject-name: index.docker.io/andergi/urgencia
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
