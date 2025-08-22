@@ -29,7 +29,6 @@
           }
           console.log(`Server listening at http://localhost:${this.port}`);
           console.log("  Press CTRL-C to stop\n");
-          console.log(`ENV: ${JSON.stringify(process.env)}`)
           resolve();
         });
       });
