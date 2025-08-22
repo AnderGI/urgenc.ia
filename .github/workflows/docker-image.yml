@@ -13,6 +13,12 @@ on:
   push:
     branches: 
       - main
+<<<<<<< HEAD
+=======
+  pull_request:
+    branches:
+      - main
+>>>>>>> c7ff612 (feat(CI/CD): automatically build and publish apps docker image)
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
