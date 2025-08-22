@@ -19,7 +19,7 @@ export class TypeOrmClientFactory {
         password: config.password,
         database: config.database,
         entities: [__dirname + '/../../../../contexts/**/infrastructure/persistence/postgres-typeorm/*{.js,.ts}', DomainEventFailoverClassEntity],
-        synchronize: true,
+        synchronize: false,
         logging: true
       });
       return connection.initialize();

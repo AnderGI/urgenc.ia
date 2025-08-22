@@ -18,8 +18,10 @@ services:
       ai:
         condition: service_started
   db:
-    image: postgres
+    image: pgvector/pgvector:pg17
     container_name: db
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
     env_file:
       - .env
     ports:
@@ -50,3 +52,5 @@ services:
     container_name: ai
     ports:
       - "11434:11434"
+volumes:
+  database:
