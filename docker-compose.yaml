@@ -50,6 +50,18 @@ services:
   ai:
     image: ollama/ollama:0.11.4
     container_name: ai
+    restart: no
+    volumes:
+      - ./etc/ollama/ollama-entrypoint.sh:/ollama-entrypoint.sh
+      - ./etc/ollama/ollama-healthcheck.sh:/ollama-healthcheck.sh
+    entrypoint:
+      - "/ollama-entrypoint.sh"
+    healthcheck:
+      test: ["CMD", "/ollama-healthcheck.sh"]
+      interval: 30s
+      retries: 5
+      start_period: 5m
+      timeout: 30s
     ports:
       - "11434:11434"
 volumes:
