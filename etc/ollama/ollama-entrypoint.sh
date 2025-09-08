@@ -15,8 +15,6 @@ OLLAMA_SERVER_ID=$!
 echo "Waiting for Ollama server to be ready"
 sleep 5
 
-ollama help
-
 AVAILABLE_MODELS="qwen3:8b nomic-embed-text:v1.5"
 MAX_RETRIES=10
 

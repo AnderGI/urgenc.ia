@@ -18,12 +18,8 @@ services:
       ai:
         condition: service_started
   db:
-    build:
-      context: ./demo/postgress
-      dockerfile: Dockerfile
-      network: host
+    image: postgres:13.22
     container_name: db
-    command: postgres -c shared_preload_libraries=pg_net
     volumes:
       - ./database:/docker-entrypoint-initdb.d
     env_file:
@@ -45,7 +41,7 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=admin123
       - PGADMIN_LISTEN_PORT=15432
     ports:
-      - "15432:15432"
+      - "25432:5432"
   events:
     image: rabbitmq:4.1-management
     container_name: events

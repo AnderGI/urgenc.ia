@@ -1,3 +1,7 @@
+create extension if not exists vector;
+create extension if not exists pg_net;
+
+
 create table if not exists domain_event_failover (
   eventId character varying NOT NULL,
   eventName character varying NOT NULL,
@@ -21,6 +25,7 @@ create table if not exists product_reviews (
   productId character varying NOT NULL,
   publishedDate TIMESTAMP NOT NULL,
   content character varying NOT NULL,
+  embedding vector(768),
   CONSTRAINT pk_product_reviews_primary_key PRIMARY KEY (productReviewsId)
 );
 
@@ -30,6 +35,5 @@ create table if not exists products (
   CONSTRAINT pk_products_primary_key PRIMARY KEY (id)
 );
 
-create extension if not exists vector;
 
-alter table product_reviews add column if not exists embedding vector(768);
+
