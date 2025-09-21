@@ -110,6 +110,7 @@ export default class RabbitMqConnection {
 	}
 
 	private async amqpConnect(): Promise<amqplib.ChannelModel> {
+		console.log(this.settings)
 		const connection = await amqplib.connect({
 			protocol: "amqp",
 			hostname: this.settings.connection.hostname,

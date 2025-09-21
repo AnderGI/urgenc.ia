@@ -3,4 +3,4 @@ dist/
 *.tsbuildinfo
 .vscode/
 .env
-
+.env.local

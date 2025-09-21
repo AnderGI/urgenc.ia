@@ -17,30 +17,37 @@ export const ProductReviewsConfigEntity = new EntitySchema<ProductReviewsConfig>
     id: {
       type: String,
       primary: true,
+      name: "id",
       transformer: ValueObjectTransformer(ProductReviewsConfigId)
     },
     totalReviews: {
       type: Number,
+      name: "total_reviews",
       transformer: ValueObjectTransformer(ProductReviewsConfigTotalReviews)
     },
     negativeReviews: {
       type: Number,
+      name: "negative_reviews",
       transformer: ValueObjectTransformer(ProductReviewsConfigNegativeReviews)
     },
     negativeReviewsThreshold: {
       type: "decimal",
+      name: "negative_reviews_threshold",
       transformer: ValueObjectTransformer(ProductReviewsConfigNegativeReviewsThreshold)
     },
     negativeReviewsRoundedPercentage: {
       type: "decimal",
+      name: "negative_reviews_rounded_percentage",
       transformer: ValueObjectTransformer(ProductReviewsConfigNegativeReviewsRoundedPercentage)
     },
     timeWindowStart: {
       type: Date,
+      name: "time_window_start",
       transformer: ValueObjectTransformer(ProductReviewsConfigTimeWindowStart)
     },
     minimumReviews: {
       type: Number,
+      name: "minimum_reviews",
       transformer: ValueObjectTransformer(ProductReviewsConfigMinimumReviews)
     }
   }

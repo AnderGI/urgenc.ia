@@ -5,6 +5,12 @@ import type DomainEventSubscriber from "../../shared/domain/event/DomainEventSub
 import RabbitMqConnection from "../../shared/infrastructure/event/rabbitmq/RabbitMqConnection.js";
 import type DomainEventClass from "../../shared/domain/event/DomainEventClass.js";
 import DomainEventJsonDeserializer from "../../shared/infrastructure/event/DomainEventJsonDeserializer.js";
+import path from "path";
+import { config } from "dotenv";
+
+config({
+	path: path.join(process.cwd(), '.env.local')
+})
 
 const connection = new RabbitMqConnection();
 

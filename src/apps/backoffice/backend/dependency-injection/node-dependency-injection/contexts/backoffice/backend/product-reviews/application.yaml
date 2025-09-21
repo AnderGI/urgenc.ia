@@ -8,3 +8,8 @@ services:
   Contexts.Backoffice.Backend.product.reviews.create.AddProductReviewsCommandHandler:
     class: ../../../../../../../../../contexts/backoffice/backend/product-reviews/application/create/AddProductReviewsCommandHandler
     arguments: ["@Contexts.Backoffice.Backend.product.reviews.create.ProductReviewsCreator"]
+  Contexts.Backoffice.Backend.product.reviews.generate.content.embedding.ProductReviewsEmbeddingGenerator:
+    class: ../../../../../../../../../contexts/backoffice/backend/product-reviews/infrastructure/persistence/ollama/generate-content-embeddings/NomicProductReviewsEmbeddingGenerator
+  Contexts.Backoffice.Backend.product.reviews.generate.content.embedding.ProductReviewsEmbeddingGeneratorService:
+    class: ../../../../../../../../../contexts/backoffice/backend/product-reviews/application/generate-embedding/ProductReviewsEmbeddingGeneratorService
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.generate.content.embedding.ProductReviewsEmbeddingGenerator", "@Contexts.Backoffice.Backend.product.reviews.domain.ProductReviewsRepository"]

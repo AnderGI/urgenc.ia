@@ -9,7 +9,7 @@ import ReviewSentimentClassifier from "../domain/ReviewSentimentClassifier.js";
 
 export default class Qwen314BSentimentClassifier implements SentimentClassifier {
   private readonly llm = new Ollama({
-    baseUrl: "http://localhost:11434",
+    baseUrl: "http://ai:11434",
     model: "qwen3:8b",
     keepAlive: "30m"
   });

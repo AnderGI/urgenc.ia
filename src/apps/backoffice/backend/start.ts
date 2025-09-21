@@ -1,5 +1,11 @@
+import path from "path";
 import container from "./dependency-injection/node-dependency-injection/index.js";
+import { config } from "dotenv";
 
+
+config({
+  path: path.join(process.cwd(), '.env.local')
+})
 try {
   const app = container.get("Apps.Backoffice.Backend.BackofficeBackendApp");
   await app.start();

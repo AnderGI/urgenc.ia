@@ -17,6 +17,7 @@ export default abstract class TypeOrmRepository<T extends AggregateRoot> {
 
   protected async persist(aggregateRoot: T): Promise<void> {
     const repository = await this.repository();
+    console.log(aggregateRoot);
     await repository.save(aggregateRoot as any);
   }
 }

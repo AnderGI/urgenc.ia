@@ -16,6 +16,17 @@
     ) {
       this.port = "5000";
       this.express = express();
+      
+      this.express.use((req:Request, res:Response, next:NextFunction) => {
+        const ACCEPTED_COMMAND_QUERY_HTTP_METHOD = ["PUT", "GET", "POST"];
+        const IS_VALID_METHOD = ACCEPTED_COMMAND_QUERY_HTTP_METHOD.includes(req.method);
+        if(!IS_VALID_METHOD) {
+          console.log('no es un metodod valido')
+          return res.status(status.BAD_REQUEST).json({"mssg": "Not accepted method"}).end()
+        }
+        return next();
+      })
+      this.express.use(express.json())
       this.router = Router();
       this.express.use(this.router);
       this.express.disable("x-powered-by");
@@ -23,7 +34,7 @@
 
     async start(): Promise<void> {
       return new Promise((resolve, reject) => {
-        this.server = this.express.listen(this.port, (err) => {
+        this.server = this.express.listen(parseInt(this.port, 10), '0.0.0.0', (err) => {
           if (err) {
             reject(err);
           }

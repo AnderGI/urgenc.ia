@@ -1,7 +1,14 @@
+import path from "path";
 import container from "../../apps/backoffice/backend/dependency-injection/node-dependency-injection/index.js";
 import type DomainEvent from "../../shared/domain/event/DomainEvent.js";
 import type DomainEventSubscriber from "../../shared/domain/event/DomainEventSubscriber.js";
 import RabbitMqConnection  from "../../shared/infrastructure/event/rabbitmq/RabbitMqConnection.js";
+import { config } from "dotenv";
+
+
+config({
+	path: path.join(process.cwd(), '.env.local')
+})
 
 
 const connection = new RabbitMqConnection();

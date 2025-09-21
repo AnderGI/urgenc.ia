@@ -14,3 +14,6 @@ services:
   Apps.Backoffice.Backend.controllers.add.product.reviews.AddProductReviewsController:
     class: ../../../../controllers/add-product-reviews/AddProductReviewsController
     arguments: ["@Contexts.Backoffice.Backend.product.reviews.create.AddProductReviewsCommandHandler"]
+  Apps.Backoffice.Backend.controllers.generate.product.reviews.embedding.GenerateProductReviewsEmbeddingsPutController:
+    class: ../../../../controllers/generate-product-reviews-embedding/GenerateProductReviewsEmbeddingsPutController
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.generate.content.embedding.ProductReviewsEmbeddingGeneratorService"]

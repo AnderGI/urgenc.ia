@@ -30,3 +30,8 @@ services:
     arguments:
       ["@Apps.Backoffice.Backend.controllers.add.product.reviews.AddProductReviewsController"]
     tags: [{ "name": "route-handlers" }]
+  Apps.Backoffice.Backend.routes.generate.product.reviews.embedding.GenerateProductReviewsEmbeddingsRouteHandler:
+    class: ../../../../routes/generate-product-reviews-embedding/GenerateProductReviewsEmbeddingsRouteHandler
+    arguments:
+      ["@Apps.Backoffice.Backend.controllers.generate.product.reviews.embedding.GenerateProductReviewsEmbeddingsPutController"]
+    tags: [{ "name": "route-handlers" }]
