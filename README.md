@@ -1,31 +1,31 @@
+# WIP (Work In Progress)
+
 # urgenc.ia
 
-**AI-powered alert system for real-time monitoring of product reviews.**  
-Detects negative review surges, analyzes context using RAG (Retrieval-Augmented Generation), and automatically delivers insightful reports.
+**Sistema basado en eventos que monitoriza, clasifica y detecta patrones de reseñas de productos negativos con el fin de proporcionar de información relevante a los vendedores interesados.**
 
----
+## Tecnologías usadas
 
-## 🚀 Overview
+- Lenguajes
+  - TypeScript (v5.8.3)
+  - Librerias destacadas: langchain/community (v0.3.50), langchain/core (v0.3.68), langchain/ollama (0.2.3), node-dependency-injection (v2.7.3), amqplib (v0.10.8), pg (v8.16.3), typeorm (v0.3.25)
+- DevOps y automatizaciones:
+  -  Docker
+  -  docker compose
+  -  Bash scripting 
+- Bases de datos y persistencia:
+  - PostgreSQL (v13)
+  - Librerias internas de postgress: pgvector (v0.8.0), pgnet **necesidad de una versión mayor controlada**
+- Sistema de colas y comunicación de eventos:
+  - RabbitMQ (v4.1)
+- Uso y hospedaje de modelos de inteligencia artificial:
+  - Ollama (v.0.11.4)
 
-`urgenc.ia` is a backend service designed using **Domain-Driven Design**, **Event-Driven Architecture**, and a **Hexagonal Architecture** approach.
+>[!NOTE]
+> Para tener mayor control sobre las publicaciones de versiones de las distintas librerías y con el fin de evitar incompatibilidades en el sistema por actualizaciones de la versión mayor, es necesario tener todas las librerías con un versionado, controlando sobre todo la parte mayor, específicas. Para más información ver la [especificación del versionado semántico](https://semver.org/lang/es/).
 
-It exposes a RESTful API for managing products and reviews. The system monitors review sentiment in real time and triggers a reporting workflow when negative feedback surpasses a configured threshold.
-
-When the percentage of negative reviews for a product exceeds a configurable threshold, `urgenc.ia`:
-
-1. Fetches recent reviews (from the last 3, 6, 9, or 12 months).
-2. Uses AI to extract semantic vectors (embeddings) from the reviews.
-3. Applies RAG (Retrieval-Augmented Generation) to generate a contextual report.
-4. Sends the report automatically to a configured email.
-
----
-
-## 🛠️ Features
-
-- 🔍 Real-time sentiment classification of reviews using AI.
-- 📊 Custom threshold per product to trigger alerts.
-- 📦 RESTful API to register products and submit reviews.
-- 🧠 RAG-based report generation for root-cause analysis.
-- 📧 Notifications with full summaries when a crisis is detected.
-
-docker run --rm -it -p 5000:5000 urgencia:latest
+## Quehaceres 
+- [ ] Documentar la API pública usando la especificación [OpenAPI](https://spec.openapis.org/oas/latest.html)
+- [ ] Implementar base de tests unitarios y de integracion antes de añadir nuevos casos de uso
+- [ ] Automatizar setup con bash y docker
+- [ ] Implementar flujos de CI/CD con el fin de mantener una correctitud de la aplicación
