@@ -10,21 +10,21 @@
 
 **Event-based system that monitors, classifies and detects patterns in negative product reviews, aiming to provide interested vendors with relevant information**
 
-## Tecnologías usadas
+## Used technologies
 
-- Lenguajes
+- Languages
   - TypeScript (v5.8.3)
   - Librerias destacadas: langchain/community (v0.3.50), langchain/core (v0.3.68), langchain/ollama (0.2.3), node-dependency-injection (v2.7.3), amqplib (v0.10.8), pg (v8.16.3), typeorm (v0.3.25)
 - DevOps y automatizaciones:
   - Docker
   - docker compose
   - Bash scripting
-- Bases de datos y persistencia:
+- Persistence and databases:
   - PostgreSQL (v13)
-  - Librerias internas de postgress: pgvector (v0.8.0), pgnet **necesidad de una versión mayor controlada**
-- Sistema de colas y comunicación de eventos:
+  - Librerias internas de postgress: pgvector (v0.8.0), pgnet **need to have a controlled mayor version**
+- Queue-based system and event communication:
   - RabbitMQ (v4.1)
-- Uso y hospedaje de modelos de inteligencia artificial:
+- Use and accomodation of artificial intelligence models:
   - Ollama (v.0.11.4)
 
 > [!NOTE]
