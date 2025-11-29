@@ -28,11 +28,11 @@
   - Ollama (v.0.11.4)
 
 > [!NOTE]
-> Para tener mayor control sobre las publicaciones de versiones de las distintas librerías y con el fin de evitar incompatibilidades en el sistema por actualizaciones de la versión mayor, es necesario tener todas las librerías con un versionado, controlando sobre todo la parte mayor, específicas. Para más información ver la [especificación del versionado semántico](https://semver.org/lang/es/).
+> In order to have a more control over the publication of the different library versions and avoid system-incompatibilities due to mayor version updates, an specfic mayor version controll system is needed for each library. For more information see [semantic versioning specification](https://semver.org/lang/es/).
 
-## Quehaceres
+## TODOS
 
-- [ ] Documentar la API pública usando la especificación [OpenAPI](https://spec.openapis.org/oas/latest.html)
-- [ ] Implementar base de tests unitarios y de integracion antes de añadir nuevos casos de uso
-- [ ] Automatizar setup con bash y docker
-- [ ] Implementar flujos de CI/CD con el fin de mantener una correctitud de la aplicación
+- [ ] Using [OpenAPI](https://spec.openapis.org/oas/latest.html) specification document the public API
+- [ ] Before new use cases are added implement unit, integration and acceptance tests
+- [ ] Automate app setup with bash and docker
+- [ ] Implement CI/CD workflows to maintain the correct functioning of the application
