@@ -3,6 +3,7 @@ import type RouteHandler from "../RouterHandler.js";
 import type ConfigureProductReviewsConfigController from "../../controllers/configure-product-reviews-config/ConfigureProductReviewsConfigController.js";
 import { body, param, validationResult } from "express-validator";
 import status from "http-status";
+import ConfigureProductReviewsConfigRequest from "../../controllers/configure-product-reviews-config/ConfigureProductReviewsConfigRequest.js";
 
 
 export default class ConfigureProductReviewsConfigRouteHandler implements RouteHandler {
@@ -20,7 +21,11 @@ export default class ConfigureProductReviewsConfigRouteHandler implements RouteH
         }
         return next();
       },(req: Request, res: Response) => {
-      return this.controller.run(req, res);
+      const { id } = req.params;
+      const { negativeThreshold, timeWindowStart, minimumReviews } = req.body;
+      this.controller.run(new ConfigureProductReviewsConfigRequest(id,  negativeThreshold, timeWindowStart, minimumReviews ));
+      res.status(status.ACCEPTED).send();
+      return;
     });
   }
 }

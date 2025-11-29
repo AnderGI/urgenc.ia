@@ -10,6 +10,6 @@ export default class CreateProductReviewsConfigOnProductRegisteredCommandHandler
   }
   
   async handle(command: CreateProductReviewsConfigOnProductRegisteredCommand): Promise<void> {
-    this.creator.run(command.productId, command.totalReviews, command.negativeReviews, command.negativeReviewsThreshold, command.negativeReviewsRoundedPercentage, command.timeWindowStart, command.minimunmReviews);
+    this.creator.run(command);
   }
 }

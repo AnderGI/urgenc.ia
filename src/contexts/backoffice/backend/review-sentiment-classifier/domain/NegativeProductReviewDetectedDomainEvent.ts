@@ -5,6 +5,7 @@ export default class NegativeProductReviewDetectedDomainEvent extends DomainEven
   static readonly eventName: string = 'andergi.backoffice.backend.event.negative_product_review_detected'
   constructor(
     public readonly productId: string,
+    public readonly productReviewId: string,
     eventId?: string,
     occurredOn?: Date,
   ) {
@@ -12,7 +13,8 @@ export default class NegativeProductReviewDetectedDomainEvent extends DomainEven
   }
   toPrimitives(): Record<string, unknown> {
     return {
-      productId: this.productId
+      productId: this.productId,
+      productReviewId: this.productReviewId
     };
   }
   
@@ -23,6 +25,7 @@ export default class NegativeProductReviewDetectedDomainEvent extends DomainEven
   ): NegativeProductReviewDetectedDomainEvent {
     return new NegativeProductReviewDetectedDomainEvent(
       attributes.productId as string,
+      attributes.productReviewId as string,
       eventId,
       occurredOn,
     );

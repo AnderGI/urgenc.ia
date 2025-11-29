@@ -25,7 +25,6 @@ subscribers.forEach((subscriber) => {
   })
 });
 
-// console.log(eventMapping)
 
 const deserializer = new DomainEventJsonDeserializer(eventMapping);
 

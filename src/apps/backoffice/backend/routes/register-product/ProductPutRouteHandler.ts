@@ -3,6 +3,7 @@ import type RouteHandler from "../RouterHandler.js";
 import type ProductPutController from "../../controllers/register-product/ProductPutController.js";
 import { body, param, validationResult } from "express-validator";
 import status from "http-status";
+import RegisterProductRequest from "../../controllers/register-product/RegisterProductRequest.js";
 
 export default class ProductPutRouteHandler implements RouteHandler {
 
@@ -19,7 +20,11 @@ export default class ProductPutRouteHandler implements RouteHandler {
         return next();
       },
       (req: Request, res: Response) => {
-      return this.controller.run(req, res);
+        const {id} = req.params;
+        const {name} = req.body;
+        this.controller.run(new RegisterProductRequest(id, name));
+        res.status(status.ACCEPTED).send();
+        return;
     });
   }
 }

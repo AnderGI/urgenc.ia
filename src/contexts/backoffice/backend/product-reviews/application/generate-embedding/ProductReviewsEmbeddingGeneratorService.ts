@@ -9,11 +9,9 @@ export default class ProductReviewsEmbeddingGeneratorService {
   constructor(private readonly _:ProductReviewsEmbeddingGenerator, private readonly repo:ProductReviewsRepository) {}
   
   public async run(_:GenerateProductReviewsEmbeddingsCommand):Promise<void> {
-    console.log("---------------------IMPORTANTEEEEEEEEEEEE----------------------")
-    console.log('ProductReviewsEmbeddingGeneratorService')
 
     const inDatabase = await this.repo.search(new ProductReviewsId(_.productReviewsId))
-    console.log(inDatabase)
+
     if(!inDatabase) {
       console.log(`no product review with id <${_.productReviewsId}>`)
       throw new Error(`no product review with id <${_.productReviewsId}>`)

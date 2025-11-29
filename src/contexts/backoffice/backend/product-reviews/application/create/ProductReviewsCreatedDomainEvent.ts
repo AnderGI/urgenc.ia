@@ -4,6 +4,7 @@ import { type DomainEventAttributes } from '../../../../../../shared/domain/even
 export default class ProductReviewsCreatedDomainEvent extends DomainEvent {
   static readonly eventName: string = 'andergi.backoffice.backend.event.product_reviews_created'
   constructor(
+    public readonly productReviewId: string,
     public readonly productId: string,
     public readonly reviewContent: string,
     eventId?: string,
@@ -14,6 +15,7 @@ export default class ProductReviewsCreatedDomainEvent extends DomainEvent {
 
   toPrimitives(): Record<string, unknown> {
     return {
+      productReviewId: this.productReviewId,
       productId: this.productId,
       reviewContent: this.reviewContent
     };
@@ -25,6 +27,7 @@ export default class ProductReviewsCreatedDomainEvent extends DomainEvent {
 		attributes: DomainEventAttributes,
 	): ProductReviewsCreatedDomainEvent {
 		return new ProductReviewsCreatedDomainEvent(
+      attributes.productReviewId as string,
 			attributes.productId as string,
       attributes.reviewContent as string,
       eventId,

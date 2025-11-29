@@ -13,3 +13,9 @@ services:
   Contexts.Backoffice.Backend.product.reviews.generate.content.embedding.ProductReviewsEmbeddingGeneratorService:
     class: ../../../../../../../../../contexts/backoffice/backend/product-reviews/application/generate-embedding/ProductReviewsEmbeddingGeneratorService
     arguments: ["@Contexts.Backoffice.Backend.product.reviews.generate.content.embedding.ProductReviewsEmbeddingGenerator", "@Contexts.Backoffice.Backend.product.reviews.domain.ProductReviewsRepository"]
+  Contexts.Backoffice.Backend.product.reviews.publish.reviews.when.negative.threshold.exceeded.NegativeThresholdSurpassedPublisher:
+    class: ../../../../../../../../../contexts/backoffice/backend/product-reviews/application/publish-reviews-when-negative-threshold-exceeded/NegativeThresholdSurpassedPublisher
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.domain.ProductReviewsRepository"]
+  Contexts.Backoffice.Backend.product.reviews.update.to.negative.review.ToNegativeUpdateReviewSentimentUpdater:
+    class: ../../../../../../../../../contexts/backoffice/backend/product-reviews/application/update-to-negative-review/ToNegativeUpdateReviewSentimentUpdater
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.domain.ProductReviewsRepository"]

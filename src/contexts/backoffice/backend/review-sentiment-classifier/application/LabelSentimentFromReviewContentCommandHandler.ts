@@ -9,6 +9,6 @@ export default class LabelSentimentFromReviewContentCommandHandler implements Co
     return LabelSentimentFromReviewContentCommand;
   }
   async handle(command: LabelSentimentFromReviewContentCommand): Promise<void> {
-    this.classifier.run(command.productId, command.reviewContent)
+    this.classifier.run(command.productReviewId, command.productId, command.reviewContent)
   }
 }

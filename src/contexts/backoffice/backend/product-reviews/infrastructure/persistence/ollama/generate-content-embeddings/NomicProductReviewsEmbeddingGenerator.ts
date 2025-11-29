@@ -15,9 +15,7 @@ export default class NomicProductReviewsEmbeddingGenerator implements ProductRev
   }
 
   async generate(_: ProductReviewsContent): Promise<ProductReviewsContentEmbedding> {
-    console.log("---------------------IMPORTANTEEEEEEEEEEEE----------------------")
-    console.log("esta generandose el embeddig")
-    const vector = await this.nomic.embedQuery(_.value)
+    const vector = await this.nomic.embedQuery(_.value);
     return new ProductReviewsContentEmbedding(vector)
   }
 }

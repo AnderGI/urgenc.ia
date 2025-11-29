@@ -69,7 +69,7 @@ export default class ProductReviewsConfig extends AggregateRoot{
 
     public incrementNegativeReviewsByOne() {
       const negativeReviewsValue = this.negativeReviews.value;
-      this.negativeReviews = new ProductReviewsConfigNegativeReviewsThreshold(negativeReviewsValue + 1)
+      this.negativeReviews = new ProductReviewsConfigNegativeReviews(negativeReviewsValue + 1)
     }
 
   }

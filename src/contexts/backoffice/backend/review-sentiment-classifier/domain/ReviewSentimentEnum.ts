@@ -1,6 +1,5 @@
 enum ReviewSentimentEnum {
   Positive = "positive",
-  Neutral = "neutral",
   Negative = "negative"
 }
 

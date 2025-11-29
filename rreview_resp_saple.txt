@@ -1,0 +1,29 @@
+[
+  ProductReviews {
+    productReviewsId: ProductReviewsId { value: 'a6692019-6b6c-4206-9582-5cb27b2e7bec' },
+    productId: ProductId { value: '2e7c531d-90c5-46a9-8b98-b08c147753d7' },
+    publishedDate: ProductReviewsPublishedDate { value: 2025-06-12T00:00:00.000Z },
+    content: ProductReviewsContent {
+      value: 'By far the best shoes I have bought in a while'
+    },
+    contentEmbedding: ProductReviewsContentEmbedding { value: [Array] }
+  },
+  ProductReviews {
+    productReviewsId: ProductReviewsId { value: '2e7c531d-90c5-46a9-8b98-b08c147753d7' },
+    productId: ProductId { value: '2e7c531d-90c5-46a9-8b98-b08c147753d7' },
+    publishedDate: ProductReviewsPublishedDate { value: 2025-06-12T00:00:00.000Z },
+    content: ProductReviewsContent {
+      value: 'They look nice but the size is completely off and they hurt to walk in'
+    },
+    contentEmbedding: ProductReviewsContentEmbedding { value: [Array] }
+  },
+  ProductReviews {
+    productReviewsId: ProductReviewsId { value: '2f7b93ac-8166-493c-b6fc-aba05ee5267b' },
+    productId: ProductId { value: '2e7c531d-90c5-46a9-8b98-b08c147753d7' },
+    publishedDate: ProductReviewsPublishedDate { value: 2025-06-12T00:00:00.000Z },
+    content: ProductReviewsContent {
+      value: 'After two weeks, the stitching came undone. Waste of money.'
+    },
+    contentEmbedding: ProductReviewsContentEmbedding { value: [Array] }
+  }
+]

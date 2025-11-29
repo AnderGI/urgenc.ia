@@ -1,4 +1,5 @@
 import StringValueObject from "../../../../../shared/domain/StringValueObject.js"
+import InvalidReviewSentimentValueError from "./InvalidReviewSentimentValueError.js";
 import ReviewSentimentEnum from "./ReviewSentimentEnum.js";
 
 export default class ReviewSentiment extends StringValueObject{
@@ -15,10 +16,9 @@ export default class ReviewSentiment extends StringValueObject{
   private checkIfSentimentIsValid(value:string) {
     if (
       value !== ReviewSentimentEnum.Negative &&
-      value !== ReviewSentimentEnum.Neutral &&
       value !== ReviewSentimentEnum.Positive
     ) {
-        throw new Error(`Invalid sentiment <${value}> for ReviewSentiment`)
+        throw new InvalidReviewSentimentValueError(value)
     }
   }
 }

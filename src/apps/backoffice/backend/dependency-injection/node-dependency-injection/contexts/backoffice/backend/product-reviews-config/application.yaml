@@ -7,7 +7,7 @@ services:
     arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.increment.ProductReviewsConfigReviewsIncrementer"]
   Contexts.Backoffice.Backend.product.reviews.config.application.increment.negative.reviews.ProductReviewsConfigNegativeReviewsIncrementer:
     class: ../../../../../../../../../contexts/backoffice/backend/product-reviews-config/application/increment-negative-reviews/ProductReviewsConfigNegativeReviewsIncrementer
-    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository"]
+    arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.domain.ProductReviewsConfigRepository", "@Backoffice.EventBus"]
   Contexts.Backoffice.Backend.product.reviews.config.application.increment.negative.reviews.IncrementProductReviewsConfigNegativeReviewsOnProductReviewsCreatedCommandHandler:
     class: ../../../../../../../../../contexts/backoffice/backend/product-reviews-config/application/increment-negative-reviews/IncrementProductReviewsConfigNegativeReviewsOnProductReviewsCreatedCommandHandler
     arguments: ["@Contexts.Backoffice.Backend.product.reviews.config.application.increment.negative.reviews.ProductReviewsConfigNegativeReviewsIncrementer"]

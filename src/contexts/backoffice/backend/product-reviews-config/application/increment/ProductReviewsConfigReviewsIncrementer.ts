@@ -10,9 +10,7 @@ export default class ProductReviewsConfigReviewsIncrementer {
     if(!productReviewsConfig) {
       throw new Error(`Product Reviews Config with id <${idProduct}> not found`)
     }
-    console.log(productReviewsConfig.toPrimitives())
     productReviewsConfig.incrementTotalReviewsByOne()
-    console.log(productReviewsConfig.toPrimitives())
     this.repository.save(productReviewsConfig)
   }
 }

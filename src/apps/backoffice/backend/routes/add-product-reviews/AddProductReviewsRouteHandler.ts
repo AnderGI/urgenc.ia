@@ -3,6 +3,7 @@ import type RouteHandler from "../RouterHandler.js";
 import type AddProductReviewsController from "../../controllers/add-product-reviews/AddProductReviewsController.js";
 import { body, param, validationResult } from "express-validator";
 import status from "http-status";
+import AddProductReviewsRequest from "../../controllers/add-product-reviews/AddProductReviewsRequest.js";
 
 
 export default class AddProductReviewsRouteHandler implements RouteHandler {
@@ -21,8 +22,12 @@ export default class AddProductReviewsRouteHandler implements RouteHandler {
         }
         return next();
       },(req: Request, res: Response) => {
-      console.log("register#/app/productReviews/:id")
-      return this.controller.run(req, res);
+      const { id } = req.params;
+      const { idProduct, createdAt, reviewContent } = req.body;
+      // body.idProduct, new Date(body.createdAt), body.reviewContent
+      this.controller.run(new AddProductReviewsRequest(id, idProduct, new Date(createdAt), reviewContent));
+      res.status(status.ACCEPTED).send();
+      return;
     });
   }
 }

@@ -22,6 +22,7 @@ create table if not exists product_reviews_config (
 create table if not exists product_reviews (
   product_reviews_id character varying NOT NULL,
   product_id character varying NOT NULL,
+  sentiment character varying NOT NULL,
   published_date TIMESTAMP NOT NULL,
   content character varying NOT NULL,
   embedding vector(768),

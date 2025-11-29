@@ -1,4 +1,4 @@
-import { EntitySchema } from "typeorm";
+import { EntitySchema, type FindOneOptions } from "typeorm";
 import Product from "../../../domain/Product.js";
 import ProductId from "../../../domain/ProductId.js";
 import type ProductRepository from "../../../domain/ProductRepository.js";
@@ -14,7 +14,12 @@ export class TypeOrmProductRepository extends TypeOrmRepository<Product> impleme
   public async search(id: ProductId): Promise<Nullable<Product>> {
     const repository = await this.repository();
 
-    const course = await repository.findOne({ where: {id} });
+    const filter: FindOneOptions<Product> = {
+      where: {
+        id : id
+      }
+    }
+    const course = await repository.findOne(filter);
 
     return course;
   }

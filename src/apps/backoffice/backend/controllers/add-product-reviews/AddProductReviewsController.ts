@@ -1,21 +1,16 @@
-import status from "http-status";
-import type { Request, Response } from "express";
 import AddProductReviewsCommand from "./AddProductReviewsCommand.js";
 import type AddProductReviewsCommandHandler from "../../../../../contexts/backoffice/backend/product-reviews/application/create/AddProductReviewsCommandHandler.js";
+import type AddProductReviewsRequest from "./AddProductReviewsRequest.js";
 
 
 export default class AddProductReviewsController {
 
   constructor(private readonly handler:AddProductReviewsCommandHandler){}
 
-  public run(req: Request, res: Response): void {
-    console.log("register#/app/productReviews/:id")
-    
-    const { id } = req.params;
-    const { body } = req;
-    const command = new AddProductReviewsCommand(id, body.idProduct, new Date(body.createdAt), body.reviewContent)
+  public run(addProductReviewsRequest:AddProductReviewsRequest): void {    
+    // const command = new AddProductReviewsCommand(addProductReviewsRequest.id, addProductReviewsRequest.idProduct, new Date(body.createdAt), body.reviewContent)
+    const command = new AddProductReviewsCommand(addProductReviewsRequest.productReviewId, addProductReviewsRequest.idProduct, addProductReviewsRequest.createdAt, addProductReviewsRequest.reviewContent)
     this.handler.handle(command)
-    res.status(status.ACCEPTED).send();
     return;
   }
   

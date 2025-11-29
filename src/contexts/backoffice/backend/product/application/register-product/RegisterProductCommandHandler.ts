@@ -5,13 +5,13 @@ import ProductRegisterer from "./ProductRegisterer.js";
 
 export default class RegisterProductCommandHandler implements CommandHandler<RegisterProductCommand>{
   
-  constructor (private readonly registerer:ProductRegisterer) {}
+  constructor (private readonly productRegisterer:ProductRegisterer) {}
   
   subscribedTo(): Command {
     return RegisterProductCommand;
   }
 
   async handle(command: RegisterProductCommand): Promise<void> {
-    return this.registerer.register(command)
+    return this.productRegisterer.register(command)
   }
 }

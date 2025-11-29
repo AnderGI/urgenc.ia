@@ -7,9 +7,7 @@ import LabelSentimentFromReviewContentCommand from "./LabelSentimentFromReviewCo
 export default class ClassifyReviewContentOnProductReviewsCreated implements DomainEventSubscriber<ProductReviewsCreatedDomainEvent> {
   constructor(private readonly classifier:LabelSentimentFromReviewContentCommandHandler){}
   async on(domainEvent: ProductReviewsCreatedDomainEvent): Promise<void> {
-    console.log('ClassifyReviewContentOnProductReviewsCreated#on')
-    console.log(domainEvent)
-    this.classifier.handle(new LabelSentimentFromReviewContentCommand(domainEvent.productId, domainEvent.reviewContent))
+    this.classifier.handle(new LabelSentimentFromReviewContentCommand(domainEvent.productReviewId, domainEvent.productId, domainEvent.reviewContent))
   }
   subscribedTo(): DomainEventClass[] {
     return [ProductReviewsCreatedDomainEvent];

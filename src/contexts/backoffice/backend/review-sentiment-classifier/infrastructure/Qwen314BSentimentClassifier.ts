@@ -15,7 +15,7 @@ export default class Qwen314BSentimentClassifier implements SentimentClassifier 
   });
   
   private readonly classificationSchema = z.object({
-    sentiment: z.enum(["positive", "neutral", "negative"]).describe("The predominant sentiment of a product review"),
+    sentiment: z.enum(["positive", "negative"]).describe("The predominant sentiment of a product review"),
   });
   
   private readonly parser = StructuredOutputParser.fromZodSchema(this.classificationSchema);

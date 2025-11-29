@@ -41,17 +41,6 @@ services:
       timeout: 10s
     networks:
       - app-network
-  db-admin:
-    image: dpage/pgadmin4:9.7.0
-    container_name: db-admin
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=email@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=admin123
-      - PGADMIN_LISTEN_PORT=15432
-    ports:
-      - "15432:15432"
-    networks:
-      - app-network
   events:
     image: rabbitmq:4.1-management
     container_name: events

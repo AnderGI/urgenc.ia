@@ -1,0 +1,21 @@
+import { Filter } from "./Filter.js";
+
+export class Filters {
+  readonly filters: Filter[];
+
+  constructor(filters: Filter[]) {
+    this.filters = filters;
+  }
+
+  static fromValues(filters: Map<string, string>[]): Filters {
+    return new Filters(filters.map(Filter.fromValues));
+  }
+
+  static none(): Filters {
+    return new Filters([]);
+  }
+
+  public isEmpty():boolean {
+    return this.filters.length === 0;
+  }
+}
