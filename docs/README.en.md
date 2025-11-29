@@ -8,7 +8,7 @@
 
 # urgenc.ia
 
-**Sistema basado en eventos que monitoriza, clasifica y detecta patrones de reseñas de productos negativos con el fin de proporcionar de información relevante a los vendedores interesados.**
+**Sistema basado en eventos que supervisa, clasifica y detecta patrones de reseñas de productos negativos con el fin de proporcionar de información relevante a los proveedores interesados.**
 
 ## Tecnologías usadas
 
