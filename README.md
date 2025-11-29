@@ -1,4 +1,6 @@
 # WIP (Work In Progress)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/AnderGI/urgenc.ia/edit/main/docs/README-eng.md)
+[![es](https://img.shields.io/badge/lang-es-red.svg)](https://github.com/AnderGI/urgenc.ia/edit/main/README.md)
 
 # urgenc.ia
 
