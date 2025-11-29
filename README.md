@@ -1,7 +1,10 @@
 # WIP (Work In Progress)
 
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/AnderGI/urgenc.ia/edit/main/docs/README-en.md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/AnderGI/urgenc.ia/edit/main/docs/README.en.md)
 [![es](https://img.shields.io/badge/lang-es-red.svg)](https://github.com/AnderGI/urgenc.ia/edit/main/README.md)
+
+>[!NOTE]
+> SE ha usado el repositorio [multilanguage-readme-pattern](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/STEPS.md) para tener un estándar en la creación de distintos ficheros de README.md para distintos idiomas.
 
 # urgenc.ia
 
