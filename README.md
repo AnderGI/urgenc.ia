@@ -1,5 +1,11 @@
 # WIP (Work In Progress)
 
+# urgenc.ia
+
+**Sistema basado en eventos que monitoriza, clasifica y detecta patrones de reseñas de productos negativos con el fin de proporcionar de información relevante a los vendedores interesados.**
+
+[link](#tecnologías-usadas)
+
 [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/AnderGI/urgenc.ia/blob/main/docs/README.en.md)
 [![es](https://img.shields.io/badge/lang-es-red.svg)](https://github.com/AnderGI/urgenc.ia/blob/main/README.md)
 
@@ -12,9 +18,7 @@
 >[!IMPORTANT]
 > Este proyecto no pretende reflejar las capacidades del desarrollo de un MVP. Bajo ningún concepto se debería de desarrollar un MVP de esta manera. Un MVP existe y debe existir como prueba de concepto para validar un producto en el mercado de la manera más rapida posible. Esto choca frontalmente con la idea fundamental que subyace en el proyecto: la implementación de toda una batería de elementos que hacen que las aplicaciones además de funcionar escalen, sean mantenibles, testables y perduren en el tiempo. Existen muchas capas de indireccion. Algunas de ellas, incluso las podría considerar sobreingeniería para el punto en el que se encuentra la aplicación. Aún así, ese es el principal objetivo por mis preferencias técnicas: desarrollar una aplicación compleja de la forma mas escalable, mantenible, reproducible y testable posible.
 
-# urgenc.ia
 
-**Sistema basado en eventos que monitoriza, clasifica y detecta patrones de reseñas de productos negativos con el fin de proporcionar de información relevante a los vendedores interesados.**
 
 ## Tecnologías usadas
 
