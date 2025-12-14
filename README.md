@@ -10,6 +10,7 @@
 - [Tecnologías usadas](#tecnologías-usadas)
 - [Quehaceres](#quehaceres)
 - [Gestión de Contenedores, Automatización y Despliegue](#gestión-de-contenedores-automatización-y-despliegue)
+- [Puesta en marcha](#puesta-en-marcha)
 
 ## Consideraciones y aspectos a tener en cuenta
 
@@ -64,36 +65,65 @@ La aplicación se apoya en las tecnologías proporcionadas por ```Docker``` y la
 - Gestionar y habilitar extensiones de ```PostgreSQL``` necesarias para el funcionamiento de la aplicación.
 - Controlar y administrar los modelos de inteligencia artificial disponibles dentro del entorno de ejecución.
 
+El punto de entrada de la aplicación es el fichero [docker-compose.yaml](https://github.com/AnderGI/urgenc.ia/blob/main/docker-compose.yaml), que define cuatro servicios distintos:
 
-Lo primero de todo, será traernos el proyecto desde el repositorio remoto de GitHub a nuestro repositorio local. Para ello, usaremos el comando ```git clone``` en cualquiera de sus posibles vías: HTTPS, SSH o GitHub CLI.
+**app**
+Este contenedor aloja la aplicación principal y expone el puerto **5000**, que se mapea con el puerto interno de Docker. Esto permite que:
 
-Es un proyecto basado en contenedores de Docker por lo que toda la configuracion relacionada con nombres de servicios, usuarios, contraseñas para por el fichero que esta en la raíz del proyecto ```./docker-compose.yaml```. Dentro veremos cuatro servicios distintos conectados bajo la misma network de app-network: app, db, events y ai.
+* Los demás contenedores se comuniquen a través del puerto interno **5000**.
+* Los clientes externos puedan interactuar con la aplicación mediante el puerto externo **5000** (por ejemplo, usando Postman).
 
-**app**: 
+El contenedor de la aplicación solo se iniciará una vez que los demás servicios se encuentren desplegados correctamente, gracias a la clave `depends_on`.
 
-Contenedor que contiene la aplicación. Es tiene el puerto 5000 expuesto y mapeado con el puerto interno de docker. Por lo que los demás contenedores se comunicarán a través del puerto interno 5000 y cualquier cliente podrá comunicarse con docker a través del puerto externo 5000 (por ejemplo, para hacer peticiones mediante clientes como Postman). Este contenedor solo arrancará si los demás servicios están desplegados correctamente (ver clave ```depends_on```). Para la contrucción de este contenedor, se hace uso de un [Dockerfile](https://github.com/AnderGI/urgenc.ia/blob/main/Dockerfile) que se encuentra en la misma raíz del proyecto. 
+Para construir este contenedor se utiliza un [Dockerfile](https://github.com/AnderGI/urgenc.ia/blob/main/Dockerfile) ubicado en la raíz del proyecto. La imagen hace uso de dos técnicas para optimizar la mima:
 
-Esta imagen hace uso de dos técnicas de desarrollo clave para optimizar la construcción de imágenes Docker: por un lado, el aprovechamiento de la caché de Docker, y por otro, el uso del patrón ```Multi-Stage Build```.
+1. **Aprovechamiento de la caché de Docker:**
+   Se copian inicialmente solo los archivos de dependencias (`package.json` y `pnpm-lock.yaml`) y se instalan antes de copiar el resto del código fuente. Esto permite reutilizar la capa de instalación de dependencias cuando no hay cambios en estos archivos, evitando ejecuciones innecesarias. Posteriormente, se copia toda la aplicación y transpila, dejando finalmente únicamente las dependencias de producción.
 
-En el primer ```FROM```, correspondiente a la imagen builder, la caché de Docker se optimiza copiando inicialmente únicamente los archivos de dependencias (package.json y pnpm-lock.yaml) e instalándolas antes de copiar el resto del código fuente. De esta forma, Docker puede reutilizar la capa de instalación de dependencias siempre que estos archivos no cambien. Posteriormente, se copia la aplicación completa y se genera el código compilado, dejando finalmente solo las dependencias de producción. Esto optimiza el tiempo de construcción de la imagen, ya que evita ejecutar repetidamente las instrucciones de instalación de dependencias y únicamente vuelve a ejecutar la fase de build cuando se producen cambios en el código fuente.
+2. **Multi-Stage Build:**
+   Esta técnica permite reducir el tamaño final de la imagen. En la primera etapa se incluyen tanto las dependencias de desarrollo como el código fuente necesario para la transpilación. En la imagen final solo se copian los artefactos necesarios para la ejecución en producción: el código JavaScript transpilado en el directorio `./dist` y las dependencias de producción.
 
-Por otro lado, el patrón ```Multi-Stage Build``` permite reducir significativamente el tamaño de la imagen final. En la primera etapa se incluyen tanto las dependencias de desarrollo como el código fuente necesario para la compilación. A continuación, en la imagen final, únicamente se copian los artefactos necesarios para la ejecución en producción: el código JavaScript ya compilado en el directorio ./dist y las dependencias de producción.
+ **db**
+Este servicio define un contenedor basado en la imagen oficial `postgres:13`, extendida mediante una imagen personalizada, cuyo proceso de construcción se detalla en el [Dockerfile](https://github.com/AnderGI/urgenc.ia/blob/main/demo/postgress/Dockerfile).
 
-**db**:
-Este servicio define un contenedor basado en la imagen oficial postgres:13, que ha sido extendida mediante la construcción de una imagen personalizada, cuyo proceso se detalla en el correspondiente [Dockerfile](https://github.com/AnderGI/urgenc.ia/blob/main/demo/postgress/Dockerfile)
+El objetivo de esta imagen personalizada es incorporar extensiones adicionales a PostgreSQL:
 
-La finalidad de esta imagen personalizada es incorporar extensiones adicionales al motor de base de datos PostgreSQL. En concreto, se incluyen las extensiones ```pgvector```, que proporciona soporte para el almacenamiento y la gestión de embeddings como campos nativos en la base de datos, y ```pg_net```, que permite la realización de llamadas HTTP directamente desde el propio sistema gestor de bases de datos.
+* **`pgvector`**: proporciona soporte para almacenar y gestionar *embeddings* como campos nativos en la base de datos.
+* **`pg_net`**: permite realizar llamadas HTTP directamente desde el propio motor de base de datos.
 
-**ai**:
-Este servicio se contruye mediante una imagen de ```ollama/ollama:0.11.4``` como servidor que permite alojar y ejecutar modelos de inteligencia artificial en local. Esta imagen, extiende las funcionalidades de la imagen base e incorpora nuevos elementos definidos el los ficheros ejecutables que hay en [./urgenc.ia/etc/ollama](https://github.com/AnderGI/urgenc.ia/tree/main/etc/ollama). 
+**ai**
+Este servicio se construye a partir de la imagen `ollama/ollama:0.11.4` y funciona como servidor para alojar y ejecutar modelos de inteligencia artificial localmente. La imagen extiende la base e incorpora elementos adicionales definidos en los ficheros ejecutables ubicados en [./urgenc.ia/etc/ollama](https://github.com/AnderGI/urgenc.ia/tree/main/etc/ollama).
 
-El script ```ollama-entrypoint.sh``` se ejecutara como entrypoint de la imagen. Es decir, sera el comando que se ejecute al inicio de la creacion del contendor. En el se definira con un sistema de reintentos la instalacion de los siguientes modelos de LLM que se usarán en la aplicación ```qwen3:8b nomic-embed-text:v1.5```. 
+El script **`ollama-entrypoint.sh`** se ejecuta como entrypoint de la imagen, definiendo un sistema de reintentos para la instalación de los modelos LLM utilizados en la aplicación:
 
-El script ollama-healthcheck.sh define un executable que se ejecutara para comprobar, como criterio de healthcheck que todos los modelos, están listos para su uso.
+* `qwen3:8b`
+* `nomic-embed-text:v1.5`
 
-**events**:
-Este servicio extiende y no añade funcionalidad extra a la imagen de rabbitmq:4.1-management. Esta servira como servicio de comunicacion de eventos para los distintos modulos que componenen la aplicacion.
+El script **`ollama-healthcheck.sh`** sirve como **healthcheck**, comprobando que todos los modelos están listos para su uso antes de que el contenedor se considere operativo.
+
+**events**
+Este servicio se basa en la imagen `rabbitmq:4.1-management` y se utiliza como sistema de comunicación de eventos para los distintos módulos de la aplicación. No incorpora funcionalidades adicionales sobre la imagen base, pero provee la gestión de colas y la interfaz de administración de RabbitMQ.
+
+
+Perfecto, puedo ayudarte a **mejorar y clarificar** tanto la explicación como el bloque de script. Te propongo algo más legible, con mejor redacción y formato para un README:  
+
+---
 
 ## Puesta en marcha
 
-Para poner en marcha y arrancar la aplicacion con todo configurado y los servicios listos tan solo basta con ejecutar el comando [setup.sh](https://github.com/AnderGI/urgenc.ia/blob/main/etc/docker/setup.sh) que se encuentra en ```./urgenc.ia/etc/docker/setup.sh```. Este ejecutara ```docker compose up -d``` que configura todos los contenedores y servicios en modo detached, ejecutado el proceso en segundo plano. Despues se segura de que tengan un healtcheck. Pofr ultimo ejecuta el obtenedor urgencia-app-1 donde se configura las colas y consumidores de rabbitmq de manera automatica y se abre un proceso para la publicacion, escucha y consumicion de eventos
+Para poner en marcha la aplicación con todos los servicios configurados, basta con ejecutar el script [setup.sh](https://github.com/AnderGI/urgenc.ia/blob/main/etc/docker/setup.sh), ubicado en `./urgenc.ia/etc/docker/setup.sh`.  
+
+Este script realiza los siguientes pasos automáticamente:  
+
+1. **Arranque de contenedores**  
+   Ejecuta `docker compose up -d`, levantando todos los contenedores en **modo detached** (en segundo plano).  
+
+2. **Verificación del estado de los servicios**  
+   Comprueba que cada contenedor tenga un **healthcheck** definido y que esté en estado `healthy`. Si no tiene healthcheck, muestra su estado `running` para informar al usuario.  
+
+3. **Configuración de RabbitMQ**  
+   Ejecuta comandos dentro del contenedor `urgencia-app-1` para:  
+   - Configurar colas y consumidores en RabbitMQ  
+   - Iniciar procesos de publicación, escucha y consumo de eventos
+
+##
