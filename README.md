@@ -42,3 +42,37 @@
 - [ ] Implementar base de tests unitarios y de integracion antes de añadir nuevos casos de uso
 - [ ] Automatizar setup con bash y docker
 - [ ] Implementar flujos de CI/CD con el fin de mantener una correctitud de la aplicación
+
+## Puesta en marcha
+Lo primero de todo, será traernos el proyecto desde el repositorio remoto de GitHub a nuestro repositorio local. Para ello, usaremos el comando ```git clone``` en cualquiera de sus posibles vías: HTTPS, SSH o GitHub CLI.
+
+Es un proyecto basado en contenedores de Docker por lo que toda la configuracion relacionada con nombres de servicios, usuarios, contraseñas para por el fichero que esta en la raíz del proyecto ```./docker-compose.yaml```. Dentro veremos cuatro servicios distintos conectados bajo la misma network de app-network: app, db, events y ai.
+
+**app**: 
+
+Contenedor que contiene la aplicación. Es tiene el puerto 5000 expuesto y mapeado con el puerto interno de docker. Por lo que los demás contenedores se comunicarán a través del puerto interno 5000 y cualquier cliente podrá comunicarse con docker a través del puerto externo 5000 (por ejemplo, para hacer peticiones mediante clientes como Postman). Este contenedor solo arrancará si los demás servicios están desplegados correctamente (ver clave ```depends_on```). Para la contrucción de este contenedor, se hace uso de un [Dockerfile](https://github.com/AnderGI/urgenc.ia/blob/main/Dockerfile) que se encuentra en la misma raíz del proyecto. 
+
+Esta imagen hace uso de dos técnicas de desarrollo clave para optimizar la construcción de imágenes Docker: por un lado, el aprovechamiento de la caché de Docker, y por otro, el uso del patrón ```Multi-Stage Build```.
+
+En el primer ```FROM```, correspondiente a la imagen builder, la caché de Docker se optimiza copiando inicialmente únicamente los archivos de dependencias (package.json y pnpm-lock.yaml) e instalándolas antes de copiar el resto del código fuente. De esta forma, Docker puede reutilizar la capa de instalación de dependencias siempre que estos archivos no cambien. Posteriormente, se copia la aplicación completa y se genera el código compilado, dejando finalmente solo las dependencias de producción. Esto optimiza el tiempo de construcción de la imagen, ya que evita ejecutar repetidamente las instrucciones de instalación de dependencias y únicamente vuelve a ejecutar la fase de build cuando se producen cambios en el código fuente.
+
+Por otro lado, el patrón ```Multi-Stage Build``` permite reducir significativamente el tamaño de la imagen final. En la primera etapa se incluyen tanto las dependencias de desarrollo como el código fuente necesario para la compilación. A continuación, en la imagen final, únicamente se copian los artefactos necesarios para la ejecución en producción: el código JavaScript ya compilado en el directorio ./dist y las dependencias de producción.
+
+**db**:
+Este servicio define un contenedor basado en la imagen oficial postgres:13, que ha sido extendida mediante la construcción de una imagen personalizada, cuyo proceso se detalla en el correspondiente [Dockerfile](https://github.com/AnderGI/urgenc.ia/blob/main/demo/postgress/Dockerfile)
+
+La finalidad de esta imagen personalizada es incorporar extensiones adicionales al motor de base de datos PostgreSQL. En concreto, se incluyen las extensiones ```pgvector```, que proporciona soporte para el almacenamiento y la gestión de embeddings como campos nativos en la base de datos, y ```pg_net```, que permite la realización de llamadas HTTP directamente desde el propio sistema gestor de bases de datos.
+
+**ai**:
+Este servicio se contruye mediante una imagen de ```ollama/ollama:0.11.4``` como servidor que permite alojar y ejecutar modelos de inteligencia artificial en local. Esta imagen, extiende las funcionalidades de la imagen base e incorpora nuevos elementos definidos el los ficheros ejecutables que hay en [./urgenc.ia/etc/ollama](https://github.com/AnderGI/urgenc.ia/tree/main/etc/ollama). 
+
+El script ```ollama-entrypoint.sh``` se ejecutara como entrypoint de la imagen. Es decir, sera el comando que se ejecute al inicio de la creacion del contendor. En el se definira con un sistema de reintentos la instalacion de los siguientes modelos de LLM que se usarán en la aplicación ```qwen3:8b nomic-embed-text:v1.5```. 
+
+El script ollama-healthcheck.sh define un executable que se ejecutara para comprobar, como criterio de healthcheck que todos los modelos, están listos para su uso.
+
+**events**:
+Este servicio extiende y no añade funcionalidad extra a la imagen de rabbitmq:4.1-management. Esta servira como servicio de comunicacion de eventos para los distintos modulos que componenen la aplicacion.
+
+### Poner en marcha el proyecto
+
+Para poner en marcha y arrancar la aplicacion con todo configurado y los servicios listos tan solo basta con ejecutar el comando [setup.sh](https://github.com/AnderGI/urgenc.ia/blob/main/etc/docker/setup.sh) que se encuentra en ```./urgenc.ia/etc/docker/setup.sh```. Este ejecutara ```docker compose up -d``` que configura todos los contenedores y servicios en modo detached, ejecutado el proceso en segundo plano. Despues se segura de que tengan un healtcheck. Pofr ultimo ejecuta el obtenedor urgencia-app-1 donde se configura las colas y consumidores de rabbitmq de manera automatica y se abre un proceso para la publicacion, escucha y consumicion de eventos
