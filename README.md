@@ -9,6 +9,7 @@
 - [Consideraciones y aspectos a tener en cuenta](#consideracioes-y-aspectos-a-tener-en-cuenta)
 - [Tecnologías usadas](#tecnologías-usadas)
 - [Quehaceres](#quehaceres)
+- [Gestión de Contenedores, Automatización y Despliegue](#Gestión-de-contenedores,-automatización-y-despliegue)
 
 ## Consideracioes y aspectos a tener en cuenta
 
@@ -53,7 +54,7 @@
 - [ ] Automatizar setup con bash y docker
 - [ ] Implementar flujos de CI/CD con el fin de mantener una correctitud de la aplicación
 
-## Puesta en marcha
+## Gestión de Contenedores, Automatización y Despliegue
 Lo primero de todo, será traernos el proyecto desde el repositorio remoto de GitHub a nuestro repositorio local. Para ello, usaremos el comando ```git clone``` en cualquiera de sus posibles vías: HTTPS, SSH o GitHub CLI.
 
 Es un proyecto basado en contenedores de Docker por lo que toda la configuracion relacionada con nombres de servicios, usuarios, contraseñas para por el fichero que esta en la raíz del proyecto ```./docker-compose.yaml```. Dentro veremos cuatro servicios distintos conectados bajo la misma network de app-network: app, db, events y ai.
@@ -83,6 +84,6 @@ El script ollama-healthcheck.sh define un executable que se ejecutara para compr
 **events**:
 Este servicio extiende y no añade funcionalidad extra a la imagen de rabbitmq:4.1-management. Esta servira como servicio de comunicacion de eventos para los distintos modulos que componenen la aplicacion.
 
-### Poner en marcha el proyecto
+## Puesta en marcha
 
 Para poner en marcha y arrancar la aplicacion con todo configurado y los servicios listos tan solo basta con ejecutar el comando [setup.sh](https://github.com/AnderGI/urgenc.ia/blob/main/etc/docker/setup.sh) que se encuentra en ```./urgenc.ia/etc/docker/setup.sh```. Este ejecutara ```docker compose up -d``` que configura todos los contenedores y servicios en modo detached, ejecutado el proceso en segundo plano. Despues se segura de que tengan un healtcheck. Pofr ultimo ejecuta el obtenedor urgencia-app-1 donde se configura las colas y consumidores de rabbitmq de manera automatica y se abre un proceso para la publicacion, escucha y consumicion de eventos
