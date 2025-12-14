@@ -8,7 +8,7 @@
 ## Índice
 - [Consideraciones y aspectos a tener en cuenta](#consideracioes-y-aspectos-a-tener-en-cuenta)
 - [Tecnologías usadas](#tecnologías-usadas)
-- [Quehaceres para la implementacion de la primera versión estable v1.0.0](#quehaceres-para-la-implementacion-de-la-primera-versión-estable-v1.0.0)
+- [Quehaceres](#quehaceres)
 
 ## Consideracioes y aspectos a tener en cuenta
 
@@ -43,7 +43,10 @@
 > [!NOTE]
 > Para tener mayor control sobre las publicaciones de versiones de las distintas librerías y con el fin de evitar incompatibilidades en el sistema por actualizaciones de la versión mayor, es necesario tener todas las librerías con un versionado, controlando sobre todo la parte mayor, específicas. Para más información ver la [especificación del versionado semántico](https://semver.org/lang/es/).
 
-## Quehaceres para la implementacion de la primera versión estable v1.0.0
+## Quehaceres
+
+>[!NOTE]
+>Quehaceres para la implementacion de la primera versión estable v1.0.0
 
 - [ ] Documentar la API pública usando la especificación [OpenAPI](https://spec.openapis.org/oas/latest.html)
 - [ ] Implementar base de tests unitarios y de integracion antes de añadir nuevos casos de uso
