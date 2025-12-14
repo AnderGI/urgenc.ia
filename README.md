@@ -9,7 +9,7 @@
 - [Consideraciones y aspectos a tener en cuenta](#consideraciones-y-aspectos-a-tener-en-cuenta)
 - [Tecnologías usadas](#tecnologías-usadas)
 - [Quehaceres](#quehaceres)
-- [Gestión de Contenedores, Automatización y Despliegue](#gestión-de-contenedores,-automatización-y-despliegue)
+- [Gestión de Contenedores, Automatización y Despliegue](#gestión-de-contenedores-automatización-y-despliegue)
 
 ## Consideraciones y aspectos a tener en cuenta
 
