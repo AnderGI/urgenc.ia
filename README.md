@@ -1,13 +1,16 @@
 # WIP (Work In Progress)
-
 # urgenc.ia
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/AnderGI/urgenc.ia/blob/main/docs/README.en.md)
+[![es](https://img.shields.io/badge/lang-es-red.svg)](https://github.com/AnderGI/urgenc.ia/blob/main/README.md)
 
 **Sistema basado en eventos que monitoriza, clasifica y detecta patrones de reseñas de productos negativos con el fin de proporcionar de información relevante a los vendedores interesados.**
 
-[link](#tecnologías-usadas)
+## Índice
+[Consideracioes y aspectos a tener en cuenta](#consideracioes-y-aspectos-a-tener-en-cuenta)
+[Tecnologías usadas](#tecnologías-usadas)
 
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/AnderGI/urgenc.ia/blob/main/docs/README.en.md)
-[![es](https://img.shields.io/badge/lang-es-red.svg)](https://github.com/AnderGI/urgenc.ia/blob/main/README.md)
+## Consideracioes y aspectos a tener en cuenta
+[volver al inicio](#urgenc.ia)
 
 >[!NOTE]
 > Se ha usado el repositorio [multilanguage-readme-pattern](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/STEPS.md) para tener un estándar en la creación de distintos ficheros de README.md para distintos idiomas.
