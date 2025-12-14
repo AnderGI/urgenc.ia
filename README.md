@@ -6,12 +6,12 @@
 **Sistema basado en eventos que monitoriza, clasifica y detecta patrones de reseñas de productos negativos con el fin de proporcionar de información relevante a los vendedores interesados.**
 
 ## Índice
-- [Consideraciones y aspectos a tener en cuenta](#consideracioes-y-aspectos-a-tener-en-cuenta)
+- [Consideraciones y aspectos a tener en cuenta](#consideraciones-y-aspectos-a-tener-en-cuenta)
 - [Tecnologías usadas](#tecnologías-usadas)
 - [Quehaceres](#quehaceres)
-- [Gestión de Contenedores, Automatización y Despliegue](#Gestión-de-contenedores,-automatización-y-despliegue)
+- [Gestión de Contenedores, Automatización y Despliegue](#gestión-de-contenedores,-automatización-y-despliegue)
 
-## Consideracioes y aspectos a tener en cuenta
+## Consideraciones y aspectos a tener en cuenta
 
 >[!NOTE]
 > Se ha usado el repositorio [multilanguage-readme-pattern](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/STEPS.md) para tener un estándar en la creación de distintos ficheros de README.md para distintos idiomas.
