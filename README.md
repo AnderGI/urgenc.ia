@@ -55,6 +55,16 @@
 - [ ] Implementar flujos de CI/CD con el fin de mantener una correctitud de la aplicación
 
 ## Gestión de Contenedores, Automatización y Despliegue
+La aplicación se apoya en las tecnologías proporcionadas por ```Docker``` y la terminal de ```Bash``` para realizar diversas tareas relacionadas con la infraestructura y la automatización, entre las que destacan:
+- Configurar y construir imágenes y contenedores personalizados mediante ```Dockerfile``` y ```docker compose```.
+- Gestionar el ciclo de vida de imágenes, contenedores y volúmenes, incluyendo su creación, ejecución y eliminación permanente.
+- Supervisar el estado de los contenedores, garantizando su correcto funcionamiento y disponibilidad.
+- Automatizar el despliegue completo de la aplicación, reduciendo la intervención manual y aumentando la reproducibilidad.
+- Configurar y administrar colas, consumidores y productores en ```RabbitMQ```, asegurando la correcta comunicación entre servicios.
+- Gestionar y habilitar extensiones de ```PostgreSQL``` necesarias para el funcionamiento de la aplicación.
+- Controlar y administrar los modelos de inteligencia artificial disponibles dentro del entorno de ejecución.
+
+
 Lo primero de todo, será traernos el proyecto desde el repositorio remoto de GitHub a nuestro repositorio local. Para ello, usaremos el comando ```git clone``` en cualquiera de sus posibles vías: HTTPS, SSH o GitHub CLI.
 
 Es un proyecto basado en contenedores de Docker por lo que toda la configuracion relacionada con nombres de servicios, usuarios, contraseñas para por el fichero que esta en la raíz del proyecto ```./docker-compose.yaml```. Dentro veremos cuatro servicios distintos conectados bajo la misma network de app-network: app, db, events y ai.
