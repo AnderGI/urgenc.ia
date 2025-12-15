@@ -104,11 +104,6 @@ El script **`ollama-healthcheck.sh`** sirve como **healthcheck**, comprobando qu
 **events**
 Este servicio se basa en la imagen `rabbitmq:4.1-management` y se utiliza como sistema de comunicación de eventos para los distintos módulos de la aplicación. No incorpora funcionalidades adicionales sobre la imagen base, pero provee la gestión de colas y la interfaz de administración de RabbitMQ.
 
-
-Perfecto, puedo ayudarte a **mejorar y clarificar** tanto la explicación como el bloque de script. Te propongo algo más legible, con mejor redacción y formato para un README:  
-
----
-
 ## Puesta en marcha
 
 Para poner en marcha la aplicación con todos los servicios configurados, basta con ejecutar el script [setup.sh](https://github.com/AnderGI/urgenc.ia/blob/main/etc/docker/setup.sh), ubicado en `./urgenc.ia/etc/docker/setup.sh`.  
