@@ -68,6 +68,7 @@ The application relies on technologies provided by Docker and the Bash terminal 
 The entry point for the application is the [docker-compose.yaml](https://github.com/AnderGI/urgenc.ia/blob/main/docker-compose.yaml) file, which defines four different services:
 
 **app**
+--
 This container hosts the main application and exposes port **5000**, which is mapped to Docker's internal port. This allows:
 
 * Other containers to communicate through internal port **5000**.
@@ -84,6 +85,7 @@ To build this container, a [Dockerfile](https://github.com/AnderGI/urgenc.ia/blo
    This technique allows you to reduce the final image size. The first stage includes both the development dependencies and the source code needed for transpilation. Only the artifacts needed for production execution are copied to the final image: the transpiled JavaScript code in the `./dist` directory and the production dependencies.
 
  **db**
+ --
 This service defines a container based on the official `postgres:13` image, extended by a custom image, whose build process is detailed in the [Dockerfile](https://github.com/AnderGI/urgenc.ia/blob/main/demo/postgress/Dockerfile).
 
 The purpose of this custom image is to incorporate additional extensions to PostgreSQL:
@@ -92,6 +94,7 @@ The purpose of this custom image is to incorporate additional extensions to Post
 * **`pg_net`**: allows HTTP calls to be made directly from the database engine itself.
 
 **ai**
+--
 This service is built from the `ollama/ollama:0.11.4` image and functions as a server to host and run artificial intelligence models locally. The image extends the base and incorporates additional elements defined in the executable files located in [./urgenc.ai/etc/ollama](https://github.com/AnderGI/urgenc.ia/tree/main/etc/ollama).
 
 The **`ollama-entrypoint.sh`** script runs as the image's entrypoint, defining a retry system for installing the LLM models used in the application:
@@ -102,6 +105,7 @@ The **`ollama-entrypoint.sh`** script runs as the image's entrypoint, defining a
 The **`ollama-healthcheck.sh`** script serves as a **healthcheck**, verifying that all models are ready for use before the container is considered operational.
 
 **events**
+--
 This service is based on the `rabbitmq:4.1-management` image and is used as an event communication system for the different modules of the application. It does not incorporate additional functionalities on top of the base image, but provides queue management and the RabbitMQ administration interface.
 
 ## Start-up
