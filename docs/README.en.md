@@ -8,7 +8,7 @@
 ## Índice
 - [Considerations and aspects to take into account](#considerations-and-aspects-to-take-into-account)
 - [Technologies used](#technologies-used)
-- [TODOS](#todos)
+- [Tasks](#tasks)
 - [Container Management, Automation, and Deployment](#container-management-automation-and-deployment)
 - [Start-up](#start-up)
 
