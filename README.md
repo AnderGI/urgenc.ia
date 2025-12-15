@@ -68,6 +68,7 @@ La aplicación se apoya en las tecnologías proporcionadas por ```Docker``` y la
 El punto de entrada de la aplicación es el fichero [docker-compose.yaml](https://github.com/AnderGI/urgenc.ia/blob/main/docker-compose.yaml), que define cuatro servicios distintos:
 
 **app**
+--
 Este contenedor aloja la aplicación principal y expone el puerto **5000**, que se mapea con el puerto interno de Docker. Esto permite que:
 
 * Los demás contenedores se comuniquen a través del puerto interno **5000**.
@@ -84,6 +85,7 @@ Para construir este contenedor se utiliza un [Dockerfile](https://github.com/And
    Esta técnica permite reducir el tamaño final de la imagen. En la primera etapa se incluyen tanto las dependencias de desarrollo como el código fuente necesario para la transpilación. En la imagen final solo se copian los artefactos necesarios para la ejecución en producción: el código JavaScript transpilado en el directorio `./dist` y las dependencias de producción.
 
  **db**
+ --
 Este servicio define un contenedor basado en la imagen oficial `postgres:13`, extendida mediante una imagen personalizada, cuyo proceso de construcción se detalla en el [Dockerfile](https://github.com/AnderGI/urgenc.ia/blob/main/demo/postgress/Dockerfile).
 
 El objetivo de esta imagen personalizada es incorporar extensiones adicionales a PostgreSQL:
@@ -92,6 +94,7 @@ El objetivo de esta imagen personalizada es incorporar extensiones adicionales a
 * **`pg_net`**: permite realizar llamadas HTTP directamente desde el propio motor de base de datos.
 
 **ai**
+--
 Este servicio se construye a partir de la imagen `ollama/ollama:0.11.4` y funciona como servidor para alojar y ejecutar modelos de inteligencia artificial localmente. La imagen extiende la base e incorpora elementos adicionales definidos en los ficheros ejecutables ubicados en [./urgenc.ia/etc/ollama](https://github.com/AnderGI/urgenc.ia/tree/main/etc/ollama).
 
 El script **`ollama-entrypoint.sh`** se ejecuta como entrypoint de la imagen, definiendo un sistema de reintentos para la instalación de los modelos LLM utilizados en la aplicación:
@@ -102,6 +105,7 @@ El script **`ollama-entrypoint.sh`** se ejecuta como entrypoint de la imagen, de
 El script **`ollama-healthcheck.sh`** sirve como **healthcheck**, comprobando que todos los modelos están listos para su uso antes de que el contenedor se considere operativo.
 
 **events**
+--
 Este servicio se basa en la imagen `rabbitmq:4.1-management` y se utiliza como sistema de comunicación de eventos para los distintos módulos de la aplicación. No incorpora funcionalidades adicionales sobre la imagen base, pero provee la gestión de colas y la interfaz de administración de RabbitMQ.
 
 ## Puesta en marcha
