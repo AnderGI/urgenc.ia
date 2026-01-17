@@ -1,6 +1,6 @@
 # MIP (Migration In Progress)
 >[!IMPORTANT]
->Project development has been stopped due to the migration of the whole apps' functionality to [java-urgenc.ia](https://github.com/AnderGI/java-urgenc.ia) repository
+>Project development has been stopped due to the migration of the whole apps' functionality to [java-urgenc-ia](https://github.com/AnderGI/java-urgenc-ia) repository
 # urgenc.ia
 [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/AnderGI/urgenc.ia/blob/main/docs/README.en.md)
 [![es](https://img.shields.io/badge/lang-es-red.svg)](https://github.com/AnderGI/urgenc.ia/blob/main/README.md)
